@@ -1,6 +1,14 @@
+import { NextRequest } from "next/server";
+
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3001";
 
-export async function POST(request: Request) {
+// Configure this route to handle larger uploads
+export const config = {
+  runtime: 'nodejs',
+  maxDuration: 300, // 5 minutes
+};
+
+export async function POST(request: NextRequest) {
   console.log("[API PROXY] Upload request received at /api/releases");
   console.log("[API PROXY] BACKEND_URL:", BACKEND_URL);
 
@@ -25,6 +33,8 @@ export async function POST(request: Request) {
       method: "POST",
       headers: token ? { Authorization: token } : {},
       body: formData,
+      // @ts-ignore - duplex option is required for Node 18+ fetch with streaming body
+      duplex: 'half',
     });
 
     console.log("[API PROXY] Backend response:", {

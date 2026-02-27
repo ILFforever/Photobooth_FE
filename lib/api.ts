@@ -1,5 +1,18 @@
 import { getToken } from "./auth";
 
+// Get backend URL from env or use current origin for local dev
+const getBackendUrl = () => {
+  if (typeof window !== 'undefined') {
+    // On client, use the backend URL from env or construct from current location
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+    if (backendUrl) return backendUrl;
+
+    // If no explicit backend URL, assume same origin (local dev)
+    return window.location.origin;
+  }
+  return process.env.BACKEND_URL || "http://localhost:3001";
+};
+
 export async function uploadRelease(
   file: File,
   type: "msi" | "vm",
@@ -26,10 +39,20 @@ export async function uploadRelease(
     throw new Error("Not authenticated");
   }
 
-  console.log("[UPLOAD CLIENT] Sending fetch request to /api/releases");
+  // For large files (> 4MB), upload directly to backend to bypass Vercel's 4.5MB limit
+  const DIRECT_UPLOAD_THRESHOLD = 4 * 1024 * 1024; // 4MB
+  const uploadDirectly = file.size > DIRECT_UPLOAD_THRESHOLD;
+
+  const uploadUrl = uploadDirectly
+    ? `${getBackendUrl()}/api/releases`
+    : "/api/releases";
+
+  console.log("[UPLOAD CLIENT] File size:", file.size, "bytes");
+  console.log("[UPLOAD CLIENT] Upload directly to backend?", uploadDirectly);
+  console.log("[UPLOAD CLIENT] Sending fetch request to:", uploadUrl);
 
   try {
-    const response = await fetch("/api/releases", {
+    const response = await fetch(uploadUrl, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
