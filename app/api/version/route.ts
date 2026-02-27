@@ -47,6 +47,7 @@ export async function GET() {
       company: "Intania Production House",
       has_download: msi?.has_download || false,
       release_notes: msi?.release_notes || [],
+      file_size: msi?.file_size,
     });
   } catch (error) {
     console.error("Version API error:", error);

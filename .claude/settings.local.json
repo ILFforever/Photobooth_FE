@@ -14,7 +14,8 @@
       "Bash(git push --force -u origin main)",
       "Bash(ls -la D:/Photobooth_BE/.env*)",
       "Bash(npm install dotenv)",
-      "Bash(npm install @mdi/react @mdi/js)"
+      "Bash(npm install @mdi/react @mdi/js)",
+      "Bash(curl -s \"http://localhost:3001/api/versions/latest?type=msi\")"
     ],
     "additionalDirectories": [
       "D:\\Photobooth_BE\\src\\middleware",

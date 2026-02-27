@@ -13,6 +13,7 @@ interface VersionInfo {
   short_name: string;
   company: string;
   release_notes?: string[];
+  file_size?: number;
 }
 
 interface ChangelogEntry {
@@ -22,6 +23,14 @@ interface ChangelogEntry {
 }
 
 type ChangelogType = "msi" | "vm";
+
+function formatBytes(bytes: number): string {
+  if (bytes === 0) return "0 Bytes";
+  const k = 1024;
+  const sizes = ["Bytes", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
+}
 
 export default function ReleasesPage() {
   const [versionInfo, setVersionInfo] = useState<VersionInfo | null>(null);
@@ -94,7 +103,10 @@ export default function ReleasesPage() {
                 <h1 className="text-4xl font-bold text-gray-900 mb-2">IPH Photobooth</h1>
                 <p className="text-lg text-gray-600">Professional Photo Booth Software for Events</p>
                 {versionInfo?.version && (
-                  <p className="text-sm text-gray-500 mt-1">Version {versionInfo.version}</p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    Version {versionInfo.version}
+                    {versionInfo.file_size && <span> • {formatBytes(versionInfo.file_size)}</span>}
+                  </p>
                 )}
               </div>
               {versionInfo?.has_download ? (
