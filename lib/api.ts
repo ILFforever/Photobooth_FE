@@ -4,10 +4,10 @@ import { getToken } from "./auth";
 const getBackendUrl = () => {
   if (typeof window !== 'undefined') {
     // On client, check for runtime-configured backend URL first
-    if ((window as any).__BACKEND_URL__) return (window as any).__BACKEND_URL__;
+    if ((window as any).__NEXT_PUBLIC_BACKEND_URL__) return (window as any).__NEXT_PUBLIC_BACKEND_URL__;
 
     // Check for env var injected by Next.js
-    const backendUrl = process.env.BACKEND_URL;
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
     console.log("[UPLOAD CLIENT] NEXT_PUBLIC_BACKEND_URL from process.env:", backendUrl);
 
     if (backendUrl) return backendUrl;
@@ -16,7 +16,7 @@ const getBackendUrl = () => {
     console.log("[UPLOAD CLIENT] No backend URL found, using origin:", window.location.origin);
     return window.location.origin;
   }
-  return process.env.BACKEND_URL || "http://localhost:3001";
+  return process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
 };
 
 export async function uploadRelease(
