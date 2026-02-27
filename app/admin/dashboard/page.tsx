@@ -23,12 +23,15 @@ export default function AdminDashboardPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("[DASHBOARD] Submit form clicked");
 
     if (!file || !version) {
+      console.log("[DASHBOARD] Validation failed:", { hasFile: !!file, hasVersion: !!version });
       setMessage({ type: "error", text: "Please fill in all required fields" });
       return;
     }
 
+    console.log("[DASHBOARD] Validation passed, starting upload");
     setUploading(true);
     setUploadProgress(0);
     setMessage(null);
@@ -39,43 +42,65 @@ export default function AdminDashboardPage() {
         .map((n) => n.trim())
         .filter((n) => n.length > 0);
 
+      console.log("[DASHBOARD] Parsed release notes:", notes);
+
       const response = await uploadRelease(file, type, version, notes);
 
+      console.log("[DASHBOARD] Upload function returned, response.ok:", response.ok);
+
       if (!response.ok) {
-        const error = await response.json().catch(() => ({ error: "Upload failed" }));
+        console.error("[DASHBOARD] Response not OK, status:", response.status);
+        const error = await response.json().catch((e) => {
+          console.error("[DASHBOARD] Failed to parse error JSON:", e);
+          return { error: "Upload failed" };
+        });
+        console.error("[DASHBOARD] Error response:", error);
         setMessage({ type: "error", text: error.error || "Upload failed" });
         return;
       }
 
       // Handle SSE stream for progress updates
+      console.log("[DASHBOARD] Reading SSE stream...");
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
 
       if (!reader) {
+        console.error("[DASHBOARD] No reader available");
         setMessage({ type: "error", text: "No response from server" });
         return;
       }
 
       let buffer = "";
+      let messageCount = 0;
 
       while (true) {
         const { done, value } = await reader.read();
 
-        if (done) break;
+        if (done) {
+          console.log("[DASHBOARD] Stream done, total messages:", messageCount);
+          break;
+        }
 
         buffer += decoder.decode(value, { stream: true });
         const lines = buffer.split("\n\n");
         buffer = lines.pop() || "";
 
         for (const line of lines) {
-          if (!line.startsWith("data: ")) continue;
+          console.log("[DASHBOARD] SSE line:", line);
+          if (!line.startsWith("data: ")) {
+            console.log("[DASHBOARD] Skipping non-data line");
+            continue;
+          }
 
           try {
             const data = JSON.parse(line.slice(6));
+            messageCount++;
+            console.log("[DASHBOARD] Parsed SSE data:", data);
 
             if (data.status === "progress") {
               setUploadProgress(data.percent);
             } else if (data.status === "complete") {
+              console.log("[DASHBOARD] Upload complete!");
               setMessage({ type: "success", text: "Release uploaded successfully!" });
               setFile(null);
               setVersion("");
@@ -83,16 +108,19 @@ export default function AdminDashboardPage() {
               const fileInput = document.getElementById("file-input") as HTMLInputElement;
               if (fileInput) fileInput.value = "";
             } else if (data.status === "error") {
+              console.error("[DASHBOARD] Upload error from server:", data);
               setMessage({ type: "error", text: data.error || "Upload failed" });
             }
-          } catch {
-            // Skip invalid JSON
+          } catch (e) {
+            console.error("[DASHBOARD] Failed to parse SSE data:", e, "line:", line);
           }
         }
       }
     } catch (err) {
+      console.error("[DASHBOARD] Exception during upload:", err);
       setMessage({ type: "error", text: err instanceof Error ? err.message : "Upload failed" });
     } finally {
+      console.log("[DASHBOARD] Upload process finishing");
       setUploading(false);
       setUploadProgress(0);
     }
