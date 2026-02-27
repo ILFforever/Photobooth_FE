@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Icon from "@mdi/react";
+import { mdiTimerSandComplete } from "@mdi/js";
 
 interface VersionInfo {
   version: string | null;
@@ -66,6 +68,16 @@ export default function ReleasesPage() {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-32">
+            <svg className="w-10 h-10 text-purple-600 animate-spin mb-4" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+            </svg>
+            <p className="text-gray-500 font-medium">Loading releases...</p>
+          </div>
+        ) : (
+        <>
         {/* Latest Release Hero */}
         <div className="relative mb-12">
           <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur-xl opacity-20" />
@@ -97,9 +109,7 @@ export default function ReleasesPage() {
                 </a>
               ) : (
                 <div className="flex items-center justify-center gap-2 px-8 py-4 bg-gray-400 text-white font-semibold rounded-xl cursor-not-allowed">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 1.994 3.768 1.994s2.902-.494 3.768-1.994m-11.536 0A11.959 11.959 0 013.598 6c0 5.891 4.348 10.757 10 11.616" />
-                  </svg>
+                  <Icon path={mdiTimerSandComplete} size={0.85} />
                   Coming Soon
                 </div>
               )}
@@ -130,9 +140,9 @@ export default function ReleasesPage() {
                 </ul>
               ) : (
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3">
-                  <svg className="w-6 h-6 text-amber-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 1.994 3.768 1.994s2.902-.494 3.768-1.994m-11.536 0A11.959 11.959 0 013.598 6c0 5.891 4.348 10.757 10 11.616" />
-                  </svg>
+                  <div className="text-amber-600 flex-shrink-0">
+                    <Icon path={mdiTimerSandComplete} size={1} />
+                  </div>
                   <div>
                     <p className="font-medium text-amber-900">Releases coming soon</p>
                     <p className="text-sm text-amber-700">Releases will be published here by the admin team.</p>
@@ -266,6 +276,8 @@ export default function ReleasesPage() {
             </div>
             )}
           </div>
+        )}
+        </>
         )}
       </main>
     </div>
