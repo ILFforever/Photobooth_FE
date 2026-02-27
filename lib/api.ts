@@ -3,11 +3,17 @@ import { getToken } from "./auth";
 // Get backend URL from env or use current origin for local dev
 const getBackendUrl = () => {
   if (typeof window !== 'undefined') {
-    // On client, use the backend URL from env or construct from current location
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+    // On client, check for runtime-configured backend URL first
+    if ((window as any).__BACKEND_URL__) return (window as any).__BACKEND_URL__;
+
+    // Check for env var injected by Next.js
+    const backendUrl = process.env.BACKEND_URL;
+    console.log("[UPLOAD CLIENT] NEXT_PUBLIC_BACKEND_URL from process.env:", backendUrl);
+
     if (backendUrl) return backendUrl;
 
     // If no explicit backend URL, assume same origin (local dev)
+    console.log("[UPLOAD CLIENT] No backend URL found, using origin:", window.location.origin);
     return window.location.origin;
   }
   return process.env.BACKEND_URL || "http://localhost:3001";
