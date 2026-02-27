@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Increase body size limit for API routes (file uploads)
   experimental: {
-    // Increase body size limit for file uploads (500MB)
-    serverActionsBodySizeLimit: '500mb',
+    bodySizeLimit: '500mb',
   },
 };
 
