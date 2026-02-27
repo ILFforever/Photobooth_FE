@@ -2,11 +2,8 @@ import { NextRequest } from "next/server";
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3001";
 
-// Configure this route to handle larger uploads
-export const config = {
-  runtime: 'nodejs',
-  maxDuration: 300, // 5 minutes
-};
+// Use Next.js segment config for runtime options
+export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   console.log("[API PROXY] Upload request received at /api/releases");
