@@ -12,6 +12,7 @@ interface VersionInfo {
   name: string;
   short_name: string;
   company: string;
+  release_notes?: string[];
 }
 
 interface ChangelogEntry {
@@ -118,26 +119,20 @@ export default function ReleasesPage() {
             <div className="border-t border-gray-200 pt-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Release Notes</h2>
               {versionInfo?.has_download ? (
-                <ul className="space-y-2 text-gray-600">
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                    </svg>
-                    Initial release with core photobooth features
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                    </svg>
-                    Live preview and photo capture
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                    </svg>
-                    Photo collages and QR code sharing
-                  </li>
-                </ul>
+                versionInfo.release_notes && versionInfo.release_notes.length > 0 ? (
+                  <ul className="space-y-2 text-gray-600">
+                    {versionInfo.release_notes.map((note, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                        </svg>
+                        {note}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-500">No release notes available for this version.</p>
+                )
               ) : (
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3">
                   <div className="text-amber-600 flex-shrink-0">
