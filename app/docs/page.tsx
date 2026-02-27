@@ -161,7 +161,7 @@ Response:
   "name": "Photobooth IPH",
   "short_name": "IPH Photobooth",
   "company": "Intania Production House",
-  "download_url": "/releases/IPH-Photobooth-v1.0.12.msi",
+  "has_download": true,
   "release_date": "2025-02-25",
   "release_notes": [...]
 }`}</code>

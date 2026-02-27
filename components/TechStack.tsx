@@ -1,3 +1,139 @@
+"use client";
+
+import { useEffect, useRef, useCallback } from "react";
+
+interface Point {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  baseOpacity: number;
+  opacity: number;
+  pulseSpeed: number;
+  pulseOffset: number;
+}
+
+const CONNECTION_DISTANCE = 150;
+const DOT_COUNT = 60;
+const SPEED = 0.3;
+
+function ConstellationGrid() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pointsRef = useRef<Point[]>([]);
+  const animRef = useRef<number>(0);
+  const sizeRef = useRef({ w: 0, h: 0 });
+
+  const initPoints = useCallback((width: number, height: number) => {
+    sizeRef.current = { w: width, h: height };
+    pointsRef.current = Array.from({ length: DOT_COUNT }, () => {
+      const angle = Math.random() * Math.PI * 2;
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: Math.cos(angle) * SPEED,
+        vy: Math.sin(angle) * SPEED,
+        baseOpacity: 0.15 + Math.random() * 0.4,
+        opacity: 0,
+        pulseSpeed: 0.3 + Math.random() * 0.7,
+        pulseOffset: Math.random() * Math.PI * 2,
+      };
+    });
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => {
+      const rect = canvas.parentElement?.getBoundingClientRect();
+      if (!rect) return;
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      if (pointsRef.current.length === 0) {
+        initPoints(rect.width, rect.height);
+      } else {
+        sizeRef.current = { w: rect.width, h: rect.height };
+      }
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    const draw = (time: number) => {
+      const t = time / 1000;
+      const { w, h } = sizeRef.current;
+      ctx.clearRect(0, 0, w, h);
+
+      const points = pointsRef.current;
+
+      // Update positions and opacity
+      for (const p of points) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Wrap around edges
+        if (p.x < 0) p.x = w;
+        else if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        else if (p.y > h) p.y = 0;
+
+        p.opacity =
+          p.baseOpacity *
+          (0.5 + 0.5 * Math.sin(t * p.pulseSpeed + p.pulseOffset));
+      }
+
+      // Draw connections
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const dx = points[i].x - points[j].x;
+          const dy = points[i].y - points[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < CONNECTION_DISTANCE) {
+            const lineOpacity =
+              (1 - dist / CONNECTION_DISTANCE) *
+              Math.min(points[i].opacity, points[j].opacity) *
+              0.6;
+            ctx.beginPath();
+            ctx.moveTo(points[i].x, points[i].y);
+            ctx.lineTo(points[j].x, points[j].y);
+            ctx.strokeStyle = `rgba(168, 162, 220, ${lineOpacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw dots
+      for (const p of points) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200, 195, 240, ${p.opacity})`;
+        ctx.fill();
+      }
+
+      animRef.current = requestAnimationFrame(draw);
+    };
+
+    animRef.current = requestAnimationFrame(draw);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animRef.current);
+    };
+  }, [initPoints]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+    />
+  );
+}
+
 const techStack = [
   {
     category: "Frontend",
@@ -33,8 +169,10 @@ const techStack = [
 
 export default function TechStack() {
   return (
-    <section className="py-24 bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative pt-24 pb-4 bg-gray-900 text-white">
+      <ConstellationGrid />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Built with Modern Technology
@@ -84,6 +222,11 @@ export default function TechStack() {
             .
           </p>
         </div>
+      </div>
+
+      {/* Separator from footer */}
+      <div className="relative z-10 mt-8 mx-auto max-w-4xl px-4">
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
       </div>
     </section>
   );

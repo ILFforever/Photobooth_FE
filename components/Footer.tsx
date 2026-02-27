@@ -9,8 +9,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <img src="/logo.png" alt="IPH Photobooth" className="w-10 h-10 rounded-lg" />
+            <div className="flex items-center gap-2 mb-4">
+              <img src="/photos/IPH W.png" alt="IPH Photobooth" className="w-8 h-8" />
               <span className="text-xl font-bold text-white">IPH Photobooth</span>
             </div>
             <p className="text-gray-400 max-w-md">
@@ -29,7 +29,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#download" className="hover:text-white transition-colors">
+                <Link href="/releases" className="hover:text-white transition-colors">
                   Download
                 </Link>
               </li>
@@ -56,17 +56,17 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:contact@intania.ph" className="hover:text-white transition-colors">
+                <a href="mailto:hammymukura@gmail.com" className="hover:text-white transition-colors">
                   Contact
                 </a>
               </li>
               <li>
-                <Link href="/docs#privacy" className="hover:text-white transition-colors">
+                <Link href="/privacy" className="hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/docs#terms" className="hover:text-white transition-colors">
+                <Link href="/terms" className="hover:text-white transition-colors">
                   Terms of Service
                 </Link>
               </li>

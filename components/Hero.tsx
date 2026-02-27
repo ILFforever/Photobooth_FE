@@ -1,7 +1,25 @@
+"use client";
+
 import Link from "next/link";
 import ImageCarousel from "@/components/ImageCarousel";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const [version, setVersion] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/version")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.version) {
+          setVersion(data.version);
+        }
+      })
+      .catch(() => {
+        // Silently fail, keep version as null
+      });
+  }, []);
+
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
       {/* Background gradient */}
@@ -39,20 +57,20 @@ export default function Hero() {
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
             Capture memorable moments at events with live preview, photo collages, QR code sharing,
             and dedicated guest display. Built by{" "}
-            <span className="font-semibold text-gray-900">ILFforever</span> for{" "}
+            <span className="font-semibold text-gray-900">ILFforever</span> and licensed to{" "}
             <span className="font-semibold text-gray-900">Intania Production House</span>.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link
-              href="#download"
+              href="/releases"
               className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-indigo-700 transition-all shadow-xl shadow-purple-500/25 flex items-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
               </svg>
-              Download for Windows
+              View Releases
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
@@ -74,7 +92,7 @@ export default function Hero() {
               <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
               </svg>
-              <span>Version 1.0.12</span>
+              <span>{version ? `Version ${version}` : "Loading version..."}</span>
             </div>
             <div className="flex items-center gap-2">
               <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
@@ -86,7 +104,7 @@ export default function Hero() {
               <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
               </svg>
-              <span>Free & Open Source</span>
+              <span>Open Source</span>
             </div>
           </div>
         </div>

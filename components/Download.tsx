@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface VersionInfo {
   version: string;
@@ -8,26 +9,24 @@ interface VersionInfo {
   name: string;
   short_name: string;
   company: string;
-  download_url?: string;
+  has_download?: boolean;
 }
 
 export default function Download() {
   const [versionInfo, setVersionInfo] = useState<VersionInfo | null>(null);
-  const [currentVersion, setCurrentVersion] = useState("1.0.12");
-  const [vmVersion, setVmVersion] = useState("1.0.5");
-  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [currentVersion, setCurrentVersion] = useState<string | null>(null);
+  const [vmVersion, setVmVersion] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/version")
       .then((res) => res.json())
       .then((data) => {
         setVersionInfo(data);
-        setCurrentVersion(data.version || "1.0.12");
-        setVmVersion(data.vm_version || "1.0.5");
-        if (data.download_url) setDownloadUrl(data.download_url);
+        setCurrentVersion(data.version);
+        setVmVersion(data.vm_version);
       })
       .catch(() => {
-        // Use default if API fails
+        // Silently fail
       });
   }, []);
 
@@ -61,7 +60,7 @@ export default function Download() {
             <div className="space-y-4 mb-8">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Version</span>
-                <span className="font-medium text-gray-900">{currentVersion}</span>
+                <span className="font-medium text-gray-900">{currentVersion || "Coming soon"}</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Format</span>
@@ -73,16 +72,15 @@ export default function Download() {
               </div>
             </div>
 
-            <a
-              href={downloadUrl || `/releases/IPH-Photobooth-v${currentVersion}.msi`}
-              className="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg shadow-purple-500/25"
-              download
+            <Link
+              href="/releases"
+              className={!currentVersion ? "flex items-center justify-center gap-2 w-full py-4 bg-gray-400 text-white font-semibold rounded-xl cursor-not-allowed" : "flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg shadow-purple-500/25"}
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
               </svg>
-              Download for Windows
-            </a>
+              {currentVersion ? "Download for Windows" : "Coming Soon"}
+            </Link>
 
             <p className="mt-4 text-xs text-gray-500 text-center">
               Requires VirtualBox for VM support (bundled)
@@ -173,11 +171,11 @@ export default function Download() {
             <div className="space-y-2">
               <div className="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3">
                 <span className="text-sm text-gray-600">App version:</span>
-                <span className="font-mono font-semibold text-purple-600">v{currentVersion}</span>
+                <span className="font-mono font-semibold text-purple-600">{currentVersion ? `v${currentVersion}` : "Not available"}</span>
               </div>
               <div className="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3">
                 <span className="text-sm text-gray-600">VM version:</span>
-                <span className="font-mono font-semibold text-purple-600">v{vmVersion}</span>
+                <span className="font-mono font-semibold text-purple-600">{vmVersion ? `v${vmVersion}` : "No versions found"}</span>
               </div>
             </div>
           </div>

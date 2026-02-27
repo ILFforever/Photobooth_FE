@@ -24,7 +24,7 @@ export default function Header() {
             <Link href="/#features" className="text-gray-600 hover:text-gray-900 transition-colors">
               Features
             </Link>
-            <Link href="/#download" className="text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/releases" className="text-gray-600 hover:text-gray-900 transition-colors">
               Download
             </Link>
             <Link href="/docs" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -43,7 +43,7 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Link
-              href="/#download"
+              href="/releases"
               className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium rounded-full hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg shadow-purple-500/25"
             >
               Get Started
@@ -85,7 +85,7 @@ export default function Header() {
                 Features
               </Link>
               <Link
-                href="/#download"
+                href="/releases"
                 className="px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -99,7 +99,7 @@ export default function Header() {
                 Documentation
               </Link>
               <Link
-                href="/#download"
+                href="/releases"
                 className="px-3 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium rounded-lg text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >

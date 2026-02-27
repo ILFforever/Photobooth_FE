@@ -8,7 +8,17 @@
       "Bash(taskkill //F //PID 47596)",
       "Bash(taskkill //F //PID 15292)",
       "Bash(npx next build)",
-      "Bash(npm install)"
+      "Bash(npm install)",
+      "Bash(git branch -M main)",
+      "Bash(git push -u origin main)",
+      "Bash(git push --force -u origin main)",
+      "Bash(ls -la D:/Photobooth_BE/.env*)",
+      "Bash(npm install dotenv)"
+    ],
+    "additionalDirectories": [
+      "D:\\Photobooth_BE\\src\\middleware",
+      "D:\\Photobooth_BE\\src",
+      "D:\\Photobooth_BE"
     ]
   }
 }
