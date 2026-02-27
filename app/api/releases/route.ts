@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server";
-
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3001";
 
 export async function POST(request: Request) {
@@ -13,14 +11,21 @@ export async function POST(request: Request) {
       body: formData,
     });
 
-    if (!response.ok) {
-      const error = await response.json();
-      return NextResponse.json(error, { status: response.status });
-    }
-
-    const data = await response.json();
-    return NextResponse.json(data);
+    // Stream the SSE response directly to the client
+    return new Response(response.body, {
+      status: response.status,
+      headers: {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive",
+      },
+    });
   } catch (error) {
-    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+    return new Response(
+      `data: ${JSON.stringify({ status: "error", error: "Upload failed" })}\n\n`,
+      {
+        headers: { "Content-Type": "text/event-stream" },
+      }
+    );
   }
 }

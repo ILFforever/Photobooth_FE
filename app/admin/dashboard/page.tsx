@@ -41,16 +41,54 @@ export default function AdminDashboardPage() {
 
       const response = await uploadRelease(file, type, version, notes);
 
-      if (response.ok) {
-        setMessage({ type: "success", text: "Release uploaded successfully!" });
-        setFile(null);
-        setVersion("");
-        setReleaseNotes("");
-        const fileInput = document.getElementById("file-input") as HTMLInputElement;
-        if (fileInput) fileInput.value = "";
-      } else {
-        const error = await response.json();
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({ error: "Upload failed" }));
         setMessage({ type: "error", text: error.error || "Upload failed" });
+        return;
+      }
+
+      // Handle SSE stream for progress updates
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) {
+        setMessage({ type: "error", text: "No response from server" });
+        return;
+      }
+
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n\n");
+        buffer = lines.pop() || "";
+
+        for (const line of lines) {
+          if (!line.startsWith("data: ")) continue;
+
+          try {
+            const data = JSON.parse(line.slice(6));
+
+            if (data.status === "progress") {
+              setUploadProgress(data.percent);
+            } else if (data.status === "complete") {
+              setMessage({ type: "success", text: "Release uploaded successfully!" });
+              setFile(null);
+              setVersion("");
+              setReleaseNotes("");
+              const fileInput = document.getElementById("file-input") as HTMLInputElement;
+              if (fileInput) fileInput.value = "";
+            } else if (data.status === "error") {
+              setMessage({ type: "error", text: data.error || "Upload failed" });
+            }
+          } catch {
+            // Skip invalid JSON
+          }
+        }
       }
     } catch (err) {
       setMessage({ type: "error", text: err instanceof Error ? err.message : "Upload failed" });
