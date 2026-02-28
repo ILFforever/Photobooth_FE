@@ -239,12 +239,12 @@ export default function AdminDashboardPage() {
                           id="file-input"
                           type="file"
                           className="sr-only"
-                          accept=".msi,.zip,.exe"
+                          accept=".msi,.zip,.exe,.iso,.ova,.ovf"
                           onChange={(e) => setFile(e.target.files?.[0] || null)}
                         />
                       </label>
                     </div>
-                    <p className="text-xs text-gray-500">MSI or ZIP up to 500MB</p>
+                    <p className="text-xs text-gray-500">MSI, ZIP, ISO, OVA, or OVF up to 500MB</p>
                     {file && (
                       <div className="flex items-center justify-center gap-2 text-sm font-medium text-purple-700 bg-purple-50 px-4 py-2 rounded-xl">
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
