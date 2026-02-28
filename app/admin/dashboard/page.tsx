@@ -224,7 +224,7 @@ export default function AdminDashboardPage() {
                         </svg>
                       </div>
                     </div>
-                    <div className="flex text-sm text-gray-600">
+                    <div className="flex justify-center text-sm text-gray-600">
                       <label
                         htmlFor="file-input"
                         className="relative cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-medium hover:from-purple-700 hover:to-indigo-700 transition-all px-4 py-2 shadow-lg shadow-purple-500/25"
