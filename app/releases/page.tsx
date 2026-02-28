@@ -36,6 +36,7 @@ export default function ReleasesPage() {
   const [versionInfo, setVersionInfo] = useState<VersionInfo | null>(null);
   const [msiChangelog, setMsiChangelog] = useState<ChangelogEntry[]>([]);
   const [vmChangelog, setVmChangelog] = useState<ChangelogEntry[]>([]);
+  const [currentVmRelease, setCurrentVmRelease] = useState<ChangelogEntry | null>(null);
   const [loading, setLoading] = useState(true);
   const [expandedVersion, setExpandedVersion] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<ChangelogType>("msi");
@@ -51,10 +52,14 @@ export default function ReleasesPage() {
         const previousMsi = (msiData.changelog || []).filter(
           (entry: ChangelogEntry) => entry.version !== versionData.version
         );
+        const currentVm = (vmData.changelog || []).find(
+          (entry: ChangelogEntry) => entry.version === versionData.vm_version
+        ) || null;
         const previousVm = (vmData.changelog || []).filter(
           (entry: ChangelogEntry) => entry.version !== versionData.vm_version
         );
         setMsiChangelog(previousMsi);
+        setCurrentVmRelease(currentVm);
         setVmChangelog(previousVm);
         setLoading(false);
       })
@@ -162,8 +167,49 @@ export default function ReleasesPage() {
           </div>
         </div>
 
+        {/* Current VM Version */}
+        {versionInfo?.vm_version && (
+          <div className="mb-8 bg-white rounded-2xl shadow-sm border border-indigo-200 p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-16.5 0h13.5" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Current VM Version</h2>
+                <p className="text-sm text-gray-500">Latest virtual machine package</p>
+              </div>
+              <div className="ml-auto">
+                <span className="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-lg font-bold">
+                  v{versionInfo.vm_version}
+                </span>
+              </div>
+            </div>
+
+            {/* VM Release Notes */}
+            {currentVmRelease?.release_notes && currentVmRelease.release_notes.length > 0 ? (
+              <div className="border-t border-indigo-100 pt-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Release Notes</h3>
+                <ul className="space-y-2 text-gray-600">
+                  {currentVmRelease.release_notes.map((note, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-indigo-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                      </svg>
+                      <span>{note.trim().replace(/^[-•]\s*/, "")}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <p className="text-gray-500 italic">No release notes available for this version.</p>
+            )}
+          </div>
+        )}
+
         {/* System Requirements */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+        <div className="mb-8 bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">System Requirements</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
@@ -239,7 +285,7 @@ export default function ReleasesPage() {
                       </div>
                       <div>
                         <p className="font-medium text-gray-900">v{entry.version}</p>
-                        {entry.created_at && (
+                        {entry.created_at && !isNaN(new Date(entry.created_at).getTime()) && (
                           <p className="text-sm text-gray-500">
                             {new Date(entry.created_at).toLocaleDateString("en-US", {
                               year: "numeric",
