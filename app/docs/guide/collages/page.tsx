@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ImageWithLoader from "@/components/ImageWithLoader";
+import Image from "next/image";
 import Link from "next/link";
 import { mdiMagnetOn, mdiEyeOff, mdiEyeOutline , mdiLock, mdiDragHorizontalVariant, mdiKeyboard, mdiShapePlusOutline, mdiPlus, mdiDownload, mdiContentSave, mdiApplicationEditOutline } from "@mdi/js";
 
@@ -61,7 +61,7 @@ export default function CollagesPage() {
 
             {/* Collage Creator overview screenshot */}
             <div className="mb-14 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-              <ImageWithLoader
+              <Image
                 src="/photos/guide/collages/collage-creator.png"
                 alt="Collage Creator interface showing a completed collage with photos, frames, and overlays"
                 width={1388}
@@ -180,7 +180,7 @@ export default function CollagesPage() {
 
                 {/* Canvas size picker screenshot */}
                 <div className="mb-5 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                  <ImageWithLoader
+                  <Image
                     src="/photos/guide/collages/canvas-open.png"
                     alt="Canvas size picker showing preset sizes: Custom, 4x6, 6x4, 5x5, and 4x6 HD"
                     width={1388}
@@ -220,7 +220,7 @@ export default function CollagesPage() {
                       Click <strong>Custom</strong> to open the custom canvas dialog. Choose from preset templates or enter exact dimensions.
                     </p>
                     <div className="rounded-lg overflow-hidden border border-gray-100 shadow-sm">
-                      <ImageWithLoader
+                      <Image
                         src="/photos/guide/collages/custom-canvas.png"
                         alt="Custom Canvas Size dialog with Standard Paper, Social Media, and Photo Print presets"
                         width={716}
@@ -274,7 +274,7 @@ export default function CollagesPage() {
 
                 {/* Background section screenshot */}
                 <div className="mb-5 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                  <ImageWithLoader
+                  <Image
                     src="/photos/guide/collages/background.png"
                     alt="Background section showing the background preview area with add image button and controls"
                     width={2880}
@@ -404,7 +404,7 @@ export default function CollagesPage() {
               {/* Frame creator screenshot */}
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-5">
                 <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                  <ImageWithLoader
+                  <Image
                     src="/photos/guide/collages/frame-creator.png"
                     alt="Frame Creator interface showing frame shape selection panel on the left, a frame preview on the canvas, and dimension controls at the bottom"
                     width={2880}
@@ -567,7 +567,7 @@ export default function CollagesPage() {
 
                     {/* Save buttons screenshot */}
                     <div className="mb-4 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                      <ImageWithLoader
+                      <Image
                         src="/photos/guide/collages/save-buttons.png"
                         alt="Save buttons toolbar showing New, Load, and Save options"
                         width={2880}
@@ -611,7 +611,7 @@ export default function CollagesPage() {
 
                     {/* Save frame screenshot */}
                     <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                      <ImageWithLoader
+                      <Image
                         src="/photos/guide/collages/frame-creator-save.png"
                         alt="Save Frame modal showing options to Save, Save & Apply, or Cancel with a name input field"
                         width={2880}
@@ -641,7 +641,7 @@ export default function CollagesPage() {
 
                     {/* Frame selector screenshot */}
                     <div className="mb-4 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                      <ImageWithLoader
+                      <Image
                         src="/photos/guide/collages/frame-select.png"
                         alt="Frame selection panel showing available frame configurations with thumbnail previews and selection interface"
                         width={2880}
@@ -697,7 +697,7 @@ export default function CollagesPage() {
 
                 {/* Layers panel screenshot */}
                 <div className="mb-5 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                  <ImageWithLoader
+                  <Image
                     src="/photos/guide/collages/layers.png"
                     alt="Layers panel showing overlay management with position, transform, and appearance controls"
                     width={1280}
@@ -854,7 +854,7 @@ export default function CollagesPage() {
 
                 {/* Custom set overview screenshot */}
                 <div className="mb-6 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                  <ImageWithLoader
+                  <Image
                     src="/photos/guide/collages/custom-set.png"
                     alt="Custom Sets panel showing saved sets with thumbnail previews, Load and Delete buttons, and the Save Current Setup button"
                     width={724}
@@ -875,7 +875,7 @@ export default function CollagesPage() {
                       <p className="text-gray-600 text-sm mb-4">Click <strong>Save Current Setup</strong> in the Custom Sets panel to open the save dialog. Give your set a name and optional description — the modal shows a <strong>Current Configuration</strong> summary of the canvas size, frame, and background being saved.</p>
                       {/* Save set modal screenshot */}
                       <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                        <ImageWithLoader
+                        <Image
                           src="/photos/guide/collages/custom-set-modal.png"
                           alt="Create Custom Set modal showing Name and Description fields alongside a Current Configuration summary of canvas, frame, and background"
                           width={724}
@@ -937,7 +937,7 @@ export default function CollagesPage() {
                   </div>
 
                   <div className="mb-5 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                    <ImageWithLoader
+                    <Image
                       src="/photos/guide/collages/working-folder.png"
                       alt="Working Folder panel showing a grid of imported photo thumbnails with filenames and dimensions, alongside the canvas with photos already placed in frames"
                       width={724}
@@ -1015,7 +1015,7 @@ export default function CollagesPage() {
                   </div>
 
                   <div className="mb-5 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                    <ImageWithLoader
+                    <Image
                       src="/photos/guide/collages/edit.png"
                       alt="Image Controls panel showing Scale, Rotation, Position, and Flip controls for a photo inside a frame, with Reset and Remove buttons at the bottom"
                       width={724}
@@ -1059,7 +1059,7 @@ export default function CollagesPage() {
                   </div>
 
                   <div className="mb-5 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                    <ImageWithLoader
+                    <Image
                       src="/photos/guide/collages/export.png"
                       alt="Export panel showing canvas dimensions (600 × 1800), the active frame name, and an Export as PNG button"
                       width={724}
