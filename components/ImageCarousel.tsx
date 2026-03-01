@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
+import ImageWithLoader from "@/components/ImageWithLoader";
 
 const images = [
   { src: "/photos/home/photobooth.png", alt: "IPH Photobooth - Live Preview" },
@@ -77,7 +77,7 @@ export default function ImageCarousel() {
                   transition: "all 700ms cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               >
-                <Image
+                <ImageWithLoader
                   src={img.src}
                   alt={img.alt}
                   fill
