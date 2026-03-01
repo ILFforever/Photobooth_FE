@@ -8,16 +8,26 @@ type ImageWithLoaderProps = Omit<ImageProps, 'onLoadingComplete'>;
 
 export default function ImageWithLoader(props: ImageWithLoaderProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const { fill, className = "" } = props;
+  const { fill, width, height, className = "" } = props;
+
+  // For fill mode, container is sized by parent
+  // For width/height mode, set explicit dimensions
+  const containerStyle = fill
+    ? {}
+    : width && height
+      ? { width: `${width}px`, height: `${height}px` }
+      : {};
+
+  const containerClass = fill
+    ? "relative w-full h-full"
+    : "relative inline-block";
 
   return (
-    <div className={fill ? "relative w-full h-full" : "relative inline-block"}>
+    <div className={containerClass} style={containerStyle}>
       {/* Loading Spinner */}
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
-          <div className="relative">
-            <div className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
-          </div>
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10 rounded-lg">
+          <div className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
         </div>
       )}
 
