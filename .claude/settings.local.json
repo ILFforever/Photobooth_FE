@@ -15,12 +15,15 @@
       "Bash(ls -la D:/Photobooth_BE/.env*)",
       "Bash(npm install dotenv)",
       "Bash(npm install @mdi/react @mdi/js)",
-      "Bash(curl -s \"http://localhost:3001/api/versions/latest?type=msi\")"
+      "Bash(curl -s \"http://localhost:3001/api/versions/latest?type=msi\")",
+      "Read(//d/Photobooth_IPH/docs/latex/chapters/**)"
     ],
     "additionalDirectories": [
       "D:\\Photobooth_BE\\src\\middleware",
       "D:\\Photobooth_BE\\src",
-      "D:\\Photobooth_BE"
+      "D:\\Photobooth_BE",
+      "D:\\Photobooth_FE\\guide",
+      "d:\\Photobooth_FE"
     ]
   }
 }

@@ -54,6 +54,7 @@ export default function GettingStartedPage() {
                   { label: "System Requirements", href: "#requirements" },
                   { label: "Download & Installation", href: "#installation" },
                   { label: "Connect Your Camera", href: "#camera" },
+                  { label: "Using the App", href: "#using" },
                 ].map((item) => (
                   <a key={item.href} href={item.href} className="flex items-center gap-2 text-sm text-gray-600 hover:text-purple-600 transition-colors py-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-300" />
@@ -211,6 +212,114 @@ export default function GettingStartedPage() {
                     </span>
                   </div>
                 </Link>
+              </div>
+            </section>
+
+            {/* Using the App */}
+            <section id="using" className="mb-16 scroll-mt-28">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 text-gray-600 text-sm font-bold">4</span>
+                <h2 className="text-2xl font-semibold text-gray-900">Using the App</h2>
+              </div>
+
+              <p className="text-gray-700 mb-6">
+                Once your camera is connected and the VM LED is green, you&apos;re ready to go. The app has two main modes: <strong>Collage Mode</strong> for designing templates, and <strong>Photobooth Mode</strong> for capturing photos.
+              </p>
+
+              {/* Important: Create collage first */}
+              <div className="mb-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <div>
+                    <span className="font-medium text-amber-900">Important:</span>
+                    <span className="text-amber-800"> Before you can use Photobooth Mode, you need to create at least one collage template in the Collage Creator. This template defines the layout for your photo sessions.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Workflow steps */}
+              <div className="relative pl-8 border-l-2 border-purple-200 space-y-8 mb-6">
+                {/* Step 1: Create Collage */}
+                <div className="relative">
+                  <span className="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-purple-500 ring-4 ring-purple-50" />
+                  <Link href="/docs/guide/collages" className="block bg-gray-50 rounded-xl p-5 border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group">
+                    <div className="flex items-start gap-4">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-purple-50 text-purple-400 group-hover:bg-purple-100 group-hover:text-purple-600 transition-colors shrink-0 mt-0.5">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" /></svg>
+                      </span>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Step 1</span>
+                          <span className="px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-700">Required first</span>
+                        </div>
+                        <h3 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors mb-1">Create a Collage Template</h3>
+                        <p className="text-gray-500 text-sm">Use the Collage Creator to design your photo layout. Choose a frame template, set backgrounds, and position photo cutouts. This template will be used during your photobooth sessions.</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Step 2: Photobooth Mode */}
+                <div className="relative">
+                  <span className="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-purple-500 ring-4 ring-purple-50" />
+                  <Link href="/docs/guide/taking-photos" className="block bg-gray-50 rounded-xl p-5 border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group">
+                    <div className="flex items-start gap-4">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-purple-50 text-purple-400 group-hover:bg-purple-100 group-hover:text-purple-600 transition-colors shrink-0 mt-0.5">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      </span>
+                      <div>
+                        <span className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Step 2</span>
+                        <h3 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors mb-1">Start Photobooth Mode</h3>
+                        <p className="text-gray-500 text-sm">Switch to Photobooth Mode to start capturing photos. Guests can use the on-screen shutter button or a countdown timer to take photos, which are automatically placed into your collage template.</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Step 3: Share */}
+                <div className="relative">
+                  <span className="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-purple-500 ring-4 ring-purple-50" />
+                  <Link href="/docs/guide/sharing" className="block bg-gray-50 rounded-xl p-5 border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group">
+                    <div className="flex items-start gap-4">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-purple-50 text-purple-400 group-hover:bg-purple-100 group-hover:text-purple-600 transition-colors shrink-0 mt-0.5">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" /></svg>
+                      </span>
+                      <div>
+                        <span className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Step 3</span>
+                        <h3 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors mb-1">Share via QR Code</h3>
+                        <p className="text-gray-500 text-sm">Guests can scan a QR code to instantly download their photos to their phone — no app install required.</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Optional: Guest Display */}
+              <Link href="/docs/guide/guest-display" className="flex items-start gap-4 bg-gray-50 rounded-xl p-5 border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group mb-6">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-purple-50 text-purple-400 group-hover:bg-purple-100 group-hover:text-purple-600 transition-colors shrink-0 mt-0.5">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                </span>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">Guest Display</h3>
+                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">Optional</span>
+                  </div>
+                  <p className="text-gray-500 text-sm">Connect a second monitor to show a live slideshow of captured photos for your guests to enjoy.</p>
+                </div>
+              </Link>
+
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-blue-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div>
+                    <span className="font-medium text-blue-900">Tip:</span>
+                    <span className="text-blue-800"> Press <kbd className="bg-blue-100 px-2 py-0.5 rounded text-sm font-mono border border-blue-200">F1</kbd> at any time to open the top bar menu for quick access to all settings and features.</span>
+                  </div>
+                </div>
               </div>
             </section>
 

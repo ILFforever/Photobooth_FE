@@ -12,7 +12,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <img src="/photos/IPH.png" alt="IPH Photobooth" className="w-7 h-7" />
+            <img src="/photos/logo/iph.png" alt="IPH Photobooth" className="w-7 h-7" />
             <span className="text-xl font-bold text-gray-900">IPH Photobooth</span>
           </Link>
 

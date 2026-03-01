@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 
 const images = [
-  { src: "/photos/photobooth.png", alt: "IPH Photobooth - Live Preview" },
-  { src: "/photos/collage_creator.png", alt: "IPH Photobooth - Collage Creator" },
-  { src: "/photos/qr.png", alt: "IPH Photobooth - QR Code Sharing" },
+  { src: "/photos/home/photobooth.png", alt: "IPH Photobooth - Live Preview" },
+  { src: "/photos/home/collage-creator.png", alt: "IPH Photobooth - Collage Creator" },
+  { src: "/photos/home/qr.png", alt: "IPH Photobooth - QR Code Sharing" },
 ];
 
 function getPosition(index: number, current: number, total: number) {

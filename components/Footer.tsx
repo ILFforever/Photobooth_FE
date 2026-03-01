@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <img src="/photos/IPH W.png" alt="IPH Photobooth" className="w-8 h-8" />
+              <img src="/photos/logo/iph-white.png" alt="IPH Photobooth" className="w-8 h-8" />
               <span className="text-xl font-bold text-white">IPH Photobooth</span>
             </div>
             <p className="text-gray-400 max-w-md">

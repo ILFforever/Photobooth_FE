@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   description: "Professional photobooth application by Intania Production House. Features live preview, photo collages, QR codes, and guest display support.",
   keywords: ["photobooth", "event photography", "photo booth software", "IPH", "Intania Production House"],
   icons: {
-    icon: "/photos/IPH.png",
-    apple: "/photos/IPH.png",
+    icon: "/photos/logo/iph.png",
+    apple: "/photos/logo/iph.png",
   },
 };
 

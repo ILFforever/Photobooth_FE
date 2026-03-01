@@ -89,7 +89,7 @@ export default function UpdatingPage() {
                     <span className="text-sm font-medium text-gray-700 mb-2 block">MSI Installer Update</span>
                     <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
                       <Image
-                        src="/photos/update-avail.png"
+                        src="/photos/guide/updating/update-avail.png"
                         alt="MSI update available notification"
                         width={800}
                         height={400}
@@ -101,7 +101,7 @@ export default function UpdatingPage() {
                     <span className="text-sm font-medium text-gray-700 mb-2 block">VM Update</span>
                     <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
                       <Image
-                        src="/photos/vm-update-avail.png"
+                        src="/photos/guide/updating/vm-update-avail.png"
                         alt="VM update available notification"
                         width={800}
                         height={400}
@@ -246,7 +246,7 @@ export default function UpdatingPage() {
                       </p>
                       <div className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm">
                         <Image
-                          src="/photos/update-download.png"
+                          src="/photos/guide/updating/update-download.png"
                           alt="Download MSI installer"
                           width={1200}
                           height={600}
@@ -274,7 +274,7 @@ export default function UpdatingPage() {
                       </div>
                       <div className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm">
                         <Image
-                          src="/photos/update-install.png"
+                          src="/photos/guide/updating/update-install.png"
                           alt="Install MSI update"
                           width={1200}
                           height={600}
@@ -307,7 +307,7 @@ export default function UpdatingPage() {
                       </p>
                       <div className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm">
                         <Image
-                          src="/photos/vm-download.png"
+                          src="/photos/guide/updating/vm-download.png"
                           alt="Download VM update"
                           width={1200}
                           height={600}
@@ -327,7 +327,7 @@ export default function UpdatingPage() {
                       </p>
                       <div className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm">
                         <Image
-                          src="/photos/vm-install.png"
+                          src="/photos/guide/updating/vm-install.png"
                           alt="Install VM update"
                           width={1200}
                           height={600}
