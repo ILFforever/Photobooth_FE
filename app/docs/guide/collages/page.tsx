@@ -80,8 +80,8 @@ export default function CollagesPage() {
                 {[
                   { label: "Understanding Sets", href: "#sets" },
                   { label: "Setting Up the Canvas", href: "#canvas" },
-                  { label: "Adding Frames", href: "#frames" },
                   { label: "Adding Backgrounds", href: "#backgrounds" },
+                  { label: "Adding Frames", href: "#frames" },
                   { label: "Adding Overlays", href: "#overlays" },
                   { label: "Saving & Using Sets", href: "#saving" },
                   { label: "Additional Panel Tabs", href: "#tabs" },
@@ -260,10 +260,111 @@ export default function CollagesPage() {
               </div>
             </section>
 
-            {/* Section 3: Adding Frames */}
-            <section id="frames" className="mb-16 scroll-mt-28">
+            {/* Section 3: Adding Backgrounds */}
+            <section id="backgrounds" className="mb-16 scroll-mt-28">
               <div className="flex items-center gap-3 mb-6">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 text-gray-600 text-sm font-bold">3</span>
+                <h2 className="text-2xl font-semibold text-gray-900">Adding Backgrounds</h2>
+              </div>
+
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <p className="text-gray-700 mb-5">
+                  The background fills the entire canvas behind your frames and photos. It sets the visual theme of your collage.
+                </p>
+
+                {/* Background section screenshot */}
+                <div className="mb-5 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                  <Image
+                    src="/photos/guide/collages/background.png"
+                    alt="Background section showing the background preview area with add image button and controls"
+                    width={2880}
+                    height={1800}
+                    className="w-full h-auto"
+                  />
+                  <div className="bg-white px-4 py-2.5 border-t border-gray-100">
+                    <p className="text-xs text-gray-500">The Background section in the frame selector—click <span className="font-medium text-gray-700">Add Image</span> or drag and drop an image directly onto the Background button to set your canvas background.</p>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <svg className="w-4 h-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                      </svg>
+                      Adding a Background
+                    </h4>
+                    <ul className="space-y-2.5">
+                      {[
+                        "Click <span class=\"font-semibold text-gray-700\">Add Image</span> when the Background section is open",
+                        "Or drag and drop directly onto the <span class=\"font-semibold text-gray-700\">Background</span> button",
+                      ].map((text, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                          <span className="text-purple-500 mt-0.5 shrink-0">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </span>
+                          <span dangerouslySetInnerHTML={{ __html: text }} />
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-3 pt-3 border-t border-gray-100">
+                      <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-purple-50 text-purple-700 text-xs font-medium">
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        PNG, JPG
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <svg className="w-4 h-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                      </svg>
+                      Adjusting Position
+                    </h4>
+                    <ul className="space-y-2.5">
+                      {[
+                        "Click to select, then drag to scale and position",
+                        "Drag on the canvas to move the background around",
+                        "Background can be larger/smaller than canvas for creative effects",
+                      ].map((text, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                          <span className="text-purple-500 mt-0.5 shrink-0">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </span>
+                          <span>{text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Auto canvas link */}
+                <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                    </svg>
+                    <div>
+                      <span className="font-medium text-blue-900">Want the canvas to match your background?</span>
+                      <p className="text-blue-800 text-sm mt-0.5">Enable the <strong>Auto</strong> toggle in the canvas settings to automatically size the canvas to your background image.</p>
+                      <p className="text-blue-800 text-sm mt-1">See <a href="#auto-canvas" className="text-blue-900 hover:text-blue-950 underline font-medium">Auto Canvas Matching</a> for details.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Section 4: Adding Frames */}
+            <section id="frames" className="mb-16 scroll-mt-28">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 text-gray-600 text-sm font-bold">4</span>
                 <h2 className="text-2xl font-semibold text-gray-900">Adding Frames</h2>
               </div>
 
@@ -576,107 +677,6 @@ export default function CollagesPage() {
                         <span className="font-semibold text-green-900 text-sm">Pro Tip:</span>
                         <p className="text-green-800 text-sm mt-0.5 leading-relaxed">During a photobooth session, guest photos are automatically placed into each frame cutout in order. The number of frames determines how many photos are taken per session.</p>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Section 4: Adding Backgrounds */}
-            <section id="backgrounds" className="mb-16 scroll-mt-28">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 text-gray-600 text-sm font-bold">4</span>
-                <h2 className="text-2xl font-semibold text-gray-900">Adding Backgrounds</h2>
-              </div>
-
-              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                <p className="text-gray-700 mb-5">
-                  The background fills the entire canvas behind your frames and photos. It sets the visual theme of your collage.
-                </p>
-
-                {/* Background section screenshot */}
-                <div className="mb-5 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-                  <Image
-                    src="/photos/guide/collages/background.png"
-                    alt="Background section showing the background preview area with add image button and controls"
-                    width={2880}
-                    height={1800}
-                    className="w-full h-auto"
-                  />
-                  <div className="bg-white px-4 py-2.5 border-t border-gray-100">
-                    <p className="text-xs text-gray-500">The Background section in the frame selector—click <span className="font-medium text-gray-700">Add Image</span> or drag and drop an image directly onto the Background button to set your canvas background.</p>
-                  </div>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
-                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <svg className="w-4 h-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                      </svg>
-                      Adding a Background
-                    </h4>
-                    <ul className="space-y-2.5">
-                      {[
-                        "Click <span class=\"font-semibold text-gray-700\">Add Image</span> when the Background section is open",
-                        "Or drag and drop directly onto the <span class=\"font-semibold text-gray-700\">Background</span> button",
-                      ].map((text, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                          <span className="text-purple-500 mt-0.5 shrink-0">
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </span>
-                          <span dangerouslySetInnerHTML={{ __html: text }} />
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-3 pt-3 border-t border-gray-100">
-                      <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-purple-50 text-purple-700 text-xs font-medium">
-                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        PNG, JPG
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
-                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <svg className="w-4 h-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                      </svg>
-                      Adjusting Position
-                    </h4>
-                    <ul className="space-y-2.5">
-                      {[
-                        "Click to select, then drag to scale and position",
-                        "Drag on the canvas to move the background around",
-                        "Background can be larger/smaller than canvas for creative effects",
-                      ].map((text, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                          <span className="text-purple-500 mt-0.5 shrink-0">
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </span>
-                          <span>{text}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Auto canvas link */}
-                <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                    </svg>
-                    <div>
-                      <span className="font-medium text-blue-900">Want the canvas to match your background?</span>
-                      <p className="text-blue-800 text-sm mt-0.5">Enable the <strong>Auto</strong> toggle in the canvas settings to automatically size the canvas to your background image.</p>
-                      <p className="text-blue-800 text-sm mt-1">See <a href="#auto-canvas" className="text-blue-900 hover:text-blue-950 underline font-medium">Auto Canvas Matching</a> for details.</p>
                     </div>
                   </div>
                 </div>
