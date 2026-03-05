@@ -1,7 +1,5 @@
 "use client";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -10,9 +8,8 @@ export default function UpdatingPage() {
   const [updateType, setUpdateType] = useState<"msi" | "vm">("msi");
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main className="pt-24 pb-16">
+    <div className="bg-white pt-24 pb-16">
+      
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 text-sm text-gray-500">
@@ -371,7 +368,7 @@ export default function UpdatingPage() {
                   },
                 ].map((item) => (
                   <details key={item.title} className="group bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-all">
-                    <summary className="list-none cursor-pointer font-medium text-gray-900 hover:bg-gray-50 rounded-xl transition-all [&::-webkit-details-marker]:hidden">
+                    <summary className="list-none cursor-pointer hover:bg-gray-50 rounded-xl transition-all [&::-webkit-details-marker]:hidden">
                       <div className="p-5 flex items-center justify-between">
                         <span className="flex items-center gap-3">
                           <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-50 text-amber-500">
@@ -379,7 +376,7 @@ export default function UpdatingPage() {
                               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
                           </span>
-                          {item.title}
+                          <span className="font-medium text-gray-900">{item.title}</span>
                         </span>
                         <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 group-open:rotate-180 transition-transform">
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -388,8 +385,8 @@ export default function UpdatingPage() {
                         </span>
                       </div>
                     </summary>
-                    <div className="px-6 pb-5 pt-1 border-t border-gray-100">
-                      <p className="text-gray-700 pl-11 pt-4">{item.solution}</p>
+                    <div className="px-6 pb-6 border-t border-gray-100">
+                      <p className="text-gray-700 mt-4">{item.solution}</p>
                     </div>
                   </details>
                 ))}
@@ -425,8 +422,7 @@ export default function UpdatingPage() {
             </section>
           </article>
         </div>
-      </main>
-      <Footer />
+      
     </div>
   );
 }

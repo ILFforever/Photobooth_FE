@@ -1,12 +1,10 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function GettingStartedPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main className="pt-24 pb-16">
+    <div className="bg-white pt-24 pb-16">
+      
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 text-sm text-gray-500">
@@ -252,7 +250,6 @@ export default function GettingStartedPage() {
                       <div>
                         <div className="flex items-center gap-2 mb-1">
                           <span className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Step 1</span>
-                          <span className="px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-700">Required first</span>
                         </div>
                         <h3 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors mb-1">Create a Collage Template</h3>
                         <p className="text-gray-500 text-sm">Use the Collage Creator to design your photo layout. Choose a frame template, set backgrounds, and position photo cutouts. This template will be used during your photobooth sessions.</p>
@@ -310,7 +307,7 @@ export default function GettingStartedPage() {
                 </div>
               </Link>
 
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+              <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
                 <div className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-blue-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -319,6 +316,35 @@ export default function GettingStartedPage() {
                     <span className="font-medium text-blue-900">Tip:</span>
                     <span className="text-blue-800"> Press <kbd className="bg-blue-100 px-2 py-0.5 rounded text-sm font-mono border border-blue-200">F1</kbd> at any time to open the top bar menu for quick access to all settings and features.</span>
                   </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Explore Photobooth CTA */}
+            <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-green-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <span className="font-medium text-green-900">About the Photobooth interface</span>
+                  <span className="text-green-800"> Run live photobooth sessions with countdown timers, instant QR code sharing, and guest display slideshow. <Link href="/docs/guide/photobooth" className="underline hover:text-green-900 font-medium">Learn more →</Link></span>
+                </div>
+              </div>
+            </div>
+
+            {/* Photobooth Interface Preview */}
+            <section className="mb-16">
+              <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                <Image
+                  src="/photos/guide/photobooth/taking-photos.png"
+                  alt="Photobooth interface preview"
+                  width={1388}
+                  height={868}
+                  className="w-full h-auto"
+                />
+                <div className="bg-gray-50 px-4 py-2.5 border-t border-gray-200">
+                  <p className="text-xs text-gray-500">The photobooth interface — left sidebar shows camera controls, center displays the guest preview with session gallery below, right sidebar lists all photo sessions.</p>
                 </div>
               </div>
             </section>
@@ -347,8 +373,7 @@ export default function GettingStartedPage() {
             </section>
           </article>
         </div>
-      </main>
-      <Footer />
+      
     </div>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 
 type CameraBrand = "fujifilm" | "canon" | "general";
@@ -84,30 +82,37 @@ export default function CameraConnectionPage() {
   const steps = cameraSteps[brand];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main className="pt-24 pb-16">
+    <div className="bg-white pt-24 pb-16">
+      
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav className="mb-8 flex items-center gap-2 text-sm">
-            <Link href="/" className="text-purple-600 hover:text-purple-700">
-              ← Back to home
-            </Link>
-            <span className="text-gray-400">/</span>
-            <Link href="/docs" className="text-purple-600 hover:text-purple-700">
-              Docs
-            </Link>
-            <span className="text-gray-400">/</span>
-            <Link href="/docs/guide" className="text-purple-600 hover:text-purple-700">
-              User Guide
-            </Link>
+          <nav className="mb-8 flex items-center gap-2 text-sm text-gray-500">
+            <Link href="/" className="hover:text-purple-600 transition-colors">Home</Link>
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            <Link href="/docs" className="hover:text-purple-600 transition-colors">Docs</Link>
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            <Link href="/docs/guide" className="hover:text-purple-600 transition-colors">User Guide</Link>
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            <span className="text-gray-900 font-medium">Camera Connection</span>
           </nav>
 
           <article>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Camera Connection</h1>
-            <p className="text-xl text-gray-600 mb-12">
-              Connect your PTP-compatible camera to IPH Photobooth and start capturing photos.
-            </p>
+            {/* Hero */}
+            <div className="relative mb-14">
+              <div className="absolute -inset-x-4 -inset-y-4 bg-gradient-to-br from-purple-50 via-indigo-50 to-white rounded-2xl -z-10" />
+              <div className="flex items-center gap-3 mb-3">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-purple-100 text-purple-600">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </span>
+                <span className="text-sm font-medium text-purple-600 tracking-wide uppercase">Hardware</span>
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Camera Connection</h1>
+              <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
+                Connect your PTP-compatible camera to IPH Photobooth and start capturing professional photos.
+              </p>
+            </div>
 
             {/* Supported Cameras */}
             <section className="mb-12">
@@ -430,8 +435,7 @@ export default function CameraConnectionPage() {
             </div>
           </article>
         </div>
-      </main>
-      <Footer />
+      
     </div>
   );
 }

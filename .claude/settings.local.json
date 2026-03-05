@@ -16,7 +16,18 @@
       "Bash(npm install dotenv)",
       "Bash(npm install @mdi/react @mdi/js)",
       "Bash(curl -s \"http://localhost:3001/api/versions/latest?type=msi\")",
-      "Read(//d/Photobooth_IPH/docs/latex/chapters/**)"
+      "Read(//d/Photobooth_IPH/docs/latex/chapters/**)",
+      "Read(//d/Photobooth_IPH/docs/latex/**)",
+      "Bash(for file in \"d:\\\\Photobooth_FE\\\\app\\\\docs\\\\guide\"/*/page.tsx \"d:\\\\Photobooth_FE\\\\app\\\\docs\\\\guide\"/*/*/page.tsx)",
+      "Bash(do)",
+      "Bash(if [ -f \"$file\" ])",
+      "Bash(then)",
+      "Bash(echo \"Processing: $file\")",
+      "Bash(fi)",
+      "Bash(done)",
+      "Read(//d/docs/**)",
+      "Bash(ls -1 *.png *.jpg *.jpeg)",
+      "Bash(npm install --save-dev cross-env)"
     ],
     "additionalDirectories": [
       "D:\\Photobooth_BE\\src\\middleware",

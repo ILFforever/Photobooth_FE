@@ -1,103 +1,94 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 
 type Severity = "common" | "moderate" | "severe";
 
-const troubleshootingItems: { title: string; severity: Severity; content: React.ReactNode }[] = [
+const troubleshootingItems: { title: string; severity: Severity; icon: string; items: string[] }[] = [
   {
     title: "Camera not detected",
     severity: "common",
-    content: (
-      <ul className="list-disc list-inside space-y-2 text-gray-700">
-        <li>Ensure your camera is powered on and has battery</li>
-        <li>Check the USB cable is properly connected at both ends</li>
-        <li>Try a different USB port on your computer</li>
-        <li>Replace the USB cable with a known-good one</li>
-        <li>Set camera to PTP mode in camera settings (usually under USB settings)</li>
-        <li>Restart both the camera and the IPH Photobooth application</li>
-        <li>Test the camera on another computer to rule out hardware issues</li>
-      </ul>
-    ),
+    icon: "M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0118.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z",
+    items: [
+      "Ensure your camera is powered on and has battery",
+      "Check the USB cable is properly connected at both ends",
+      "Try a different USB port on your computer",
+      "Replace the USB cable with a known-good one",
+      "Set camera to PTP mode in camera settings (usually under USB settings)",
+      "Restart both the camera and the IPH Photobooth application",
+      "Test the camera on another computer to rule out hardware issues",
+    ],
   },
   {
     title: "App won't start or crashes on launch",
     severity: "common",
-    content: (
-      <ul className="list-disc list-inside space-y-2 text-gray-700">
-        <li>Check Windows Event Viewer for crash logs (search for "Event Viewer" in Start)</li>
-        <li>Ensure VirtualBox is running (bundled with installer)</li>
-        <li>Try running as administrator: Right-click → Run as administrator</li>
-        <li>Check if antivirus is blocking the application</li>
-        <li>Verify your GPU drivers are up to date</li>
-        <li>Make sure you have at least 4GB of free RAM</li>
-      </ul>
-    ),
+    icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    items: [
+      'Check Windows Event Viewer for crash logs (search for "Event Viewer" in Start)',
+      "Ensure VirtualBox is running (bundled with installer)",
+      "Try running as administrator: Right-click → Run as administrator",
+      "Check if antivirus is blocking the application",
+      "Verify your GPU drivers are up to date",
+      "Make sure you have at least 4GB of free RAM",
+    ],
   },
   {
     title: "Photos appear dark or overexposed",
     severity: "moderate",
-    content: (
-      <ul className="list-disc list-inside space-y-2 text-gray-700">
-        <li>Check camera exposure settings — use auto-exposure mode initially</li>
-        <li>Ensure adequate lighting in your photobooth area</li>
-        <li>Aide pointing the camera directly at bright lights or windows</li>
-        <li>Use the live preview to adjust lighting before taking photos</li>
-        <li>Some cameras allow exposure compensation through the camera itself</li>
-      </ul>
-    ),
+    icon: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z",
+    items: [
+      "Check camera exposure settings — use auto-exposure mode initially",
+      "Ensure adequate lighting in your photobooth area",
+      "Aide pointing the camera directly at bright lights or windows",
+      "Use the live preview to adjust lighting before taking photos",
+      "Some cameras allow exposure compensation through the camera itself",
+    ],
   },
   {
     title: "QR code not working for guests",
     severity: "moderate",
-    content: (
-      <ul className="list-disc list-inside space-y-2 text-gray-700">
-        <li>Ensure the guest's phone camera or QR scanner app is active</li>
-        <li>Check that both the photobooth and guest device have internet connection</li>
-        <li>Make sure the QR code is fully visible on screen</li>
-        <li>Try increasing the display brightness if in a bright environment</li>
-        <li>Guests can also manually type the URL shown below the QR code</li>
-      </ul>
-    ),
+    icon: "M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z",
+    items: [
+      "Ensure the guest's phone camera or QR scanner app is active",
+      "Check that both the photobooth and guest device have internet connection",
+      "Make sure the QR code is fully visible on screen",
+      "Try increasing the display brightness if in a bright environment",
+      "Guests can also manually type the URL shown below the QR code",
+    ],
   },
   {
     title: "Guest display not showing photos",
     severity: "moderate",
-    content: (
-      <ul className="list-disc list-inside space-y-2 text-gray-700">
-        <li>Ensure the secondary display is properly connected via HDMI/DisplayPort</li>
-        <li>Check Windows display settings: Win+P → Extend</li>
-        <li>Verify the display is set to "Extend these displays" not "Duplicate"</li>
-        <li>Restart the application after connecting the display</li>
-        <li>Try disconnecting and reconnecting the display cable</li>
-      </ul>
-    ),
+    icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    items: [
+      "Ensure the secondary display is properly connected via HDMI/DisplayPort",
+      "Check Windows display settings: Win+P → Extend",
+      'Verify the display is set to "Extend these displays" not "Duplicate"',
+      "Restart the application after connecting the display",
+      "Try disconnecting and reconnecting the display cable",
+    ],
   },
   {
     title: "Photos not saving or missing",
     severity: "severe",
-    content: (
-      <ul className="list-disc list-inside space-y-2 text-gray-700">
-        <li>Check available disk space on your computer</li>
-        <li>Verify write permissions on the installation folder</li>
-        <li>Check if antivirus is blocking file writes</li>
-        <li>Look in Windows Event Viewer for disk-related errors</li>
-        <li>Ensure the virtual machine has adequate storage allocated</li>
-      </ul>
-    ),
+    icon: "M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4",
+    items: [
+      "Check available disk space on your computer",
+      "Verify write permissions on the installation folder",
+      "Check if antivirus is blocking file writes",
+      "Look in Windows Event Viewer for disk-related errors",
+      "Ensure the virtual machine has adequate storage allocated",
+    ],
   },
   {
     title: "Poor photo quality or blurry images",
     severity: "moderate",
-    content: (
-      <ul className="list-disc list-inside space-y-2 text-gray-700">
-        <li>Clean the camera lens with a proper lens cleaning cloth</li>
-        <li>Ensure adequate lighting — low light causes longer exposure times</li>
-        <li>Use a tripod if available to prevent camera shake</li>
-        <li>Ask subjects to remain still during countdown</li>
-        <li>Check camera focus settings — use auto-focus for best results</li>
-      </ul>
-    ),
+    icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
+    items: [
+      "Clean the camera lens with a proper lens cleaning cloth",
+      "Ensure adequate lighting — low light causes longer exposure times",
+      "Use a tripod if available to prevent camera shake",
+      "Ask subjects to remain still during countdown",
+      "Check camera focus settings — use auto-focus for best results",
+    ],
   },
 ];
 
@@ -119,11 +110,34 @@ const severityBadgeColors = {
   severe: "bg-red-200 text-red-800",
 };
 
+const severityIconColors = {
+  common: "bg-blue-100 text-blue-500",
+  moderate: "bg-yellow-100 text-yellow-600",
+  severe: "bg-red-100 text-red-500",
+};
+
+const severityChevronColors = {
+  common: "bg-blue-100 text-blue-400",
+  moderate: "bg-yellow-100 text-yellow-500",
+  severe: "bg-red-100 text-red-400",
+};
+
+const severityHoverColors = {
+  common: "hover:bg-blue-100/50",
+  moderate: "hover:bg-yellow-100/50",
+  severe: "hover:bg-red-100/50",
+};
+
+const severityBulletColors = {
+  common: "text-blue-500",
+  moderate: "text-yellow-500",
+  severe: "text-red-500",
+};
+
 export default function TroubleshootingPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main className="pt-24 pb-16">
+    <div className="bg-white pt-24 pb-16">
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 text-sm text-gray-500">
@@ -178,24 +192,48 @@ export default function TroubleshootingPage() {
             </div>
 
             {/* Troubleshooting Items */}
-            {troubleshootingItems.map((item) => (
-              <details key={item.title} className={`mb-3 group rounded-xl border ${severityColors[item.severity]}`}>
-                <summary className="list-none cursor-pointer font-medium text-gray-900 hover:bg-opacity-80 rounded-xl transition-all [&::-webkit-details-marker]:hidden">
-                  <div className="p-6 flex items-center justify-between">
-                    <span className="flex items-center gap-3">
-                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${severityBadgeColors[item.severity]}`}>
-                        {severityLabels[item.severity]}
+            <div className="space-y-3 mb-8">
+              {troubleshootingItems.map((item) => (
+                <details key={item.title} className={`group rounded-xl border ${severityColors[item.severity]}`}>
+                  <summary className={`list-none cursor-pointer rounded-xl ${severityHoverColors[item.severity]} transition-all [&::-webkit-details-marker]:hidden`}>
+                    <div className="p-5 flex items-center justify-between">
+                      <span className="flex items-center gap-3">
+                        <span className={`inline-flex items-center justify-center w-8 h-8 rounded-lg ${severityIconColors[item.severity]}`}>
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
+                          </svg>
+                        </span>
+                        <div>
+                          <span className="font-medium text-gray-900">{item.title}</span>
+                          <span className={`ml-2 px-2 py-0.5 rounded text-xs font-medium ${severityBadgeColors[item.severity]}`}>
+                            {severityLabels[item.severity]}
+                          </span>
+                        </div>
                       </span>
-                      {item.title}
-                    </span>
-                    <span className="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                      <span className={`w-8 h-8 rounded-full ${severityChevronColors[item.severity]} flex items-center justify-center group-open:rotate-180 transition-transform`}>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 border-t border-gray-200/50">
+                    <ul className="mt-4 space-y-2.5">
+                      {item.items.map((text, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                          <span className={`mt-0.5 shrink-0 ${severityBulletColors[item.severity]}`}>
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </span>
+                          <span>{text}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </summary>
-                <div className="px-6 pb-6 pt-2 border-t border-gray-200/50">
-                  {item.content}
-                </div>
-              </details>
-            ))}
+                </details>
+              ))}
+            </div>
 
             {/* Update Info - non-collapsible */}
             <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
@@ -235,8 +273,7 @@ export default function TroubleshootingPage() {
             </div>
           </article>
         </div>
-      </main>
-      <Footer />
+
     </div>
   );
 }
