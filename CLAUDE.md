@@ -1,0 +1,31 @@
+# CLAUDE.md
+
+## Design Context
+
+### Users
+Professional event photographers evaluating photobooth software for real client engagements. They arrive with discerning eyes — they spend their lives composing beautiful images and will immediately notice sloppy UI. They need to trust the software before handing it to guests, so their mindset is: *does this look professional enough to represent my work?* They care about reliability, polish, and feature depth. They are not looking for "fun" — they want confidence.
+
+### Brand Personality
+**Elegant · Minimal · Sophisticated**
+
+The brand is a premium tool for image-focused professionals. It should feel closer to Apple, Linear, or a high-end camera manufacturer's site than to a typical purple-gradient SaaS startup. The voice is calm and assured — never loud or hype-driven. Less "download our free tool!", more "built for professionals who care about quality."
+
+### Aesthetic Direction
+- **Reference**: Apple.com, Linear.app, Vercel.com — precision, restraint, generous whitespace, purposeful typography
+- **Anti-reference**: Generic purple SaaS landing pages (Stripe clones, startup templates) — oversaturated gradients, badge-heavy hero sections, loud CTAs
+- **Theme**: Lean into the existing purple-indigo palette but use it as an *accent*, not the background. Let white space breathe. Reserve color for moments that matter.
+- **Photography-forward**: The product is about beautiful images. Let photos and product screenshots do the heavy lifting visually. Don't compete with them using noisy gradients.
+- **Light mode primary**, dark sections used sparingly and intentionally (e.g., the tech stack / footer dark section is appropriate).
+- **Typography as design**: Big, confident headline type. Generous line-height. Clear hierarchy. Text should feel composed, not crowded.
+
+### Design Principles
+
+1. **Restraint over decoration** — Every color, shadow, and gradient must earn its place. Default to removing, not adding. White space is not empty space; it is the design.
+
+2. **Photography first** — The product captures images. The site should feel like a gallery, not a brochure. Let product screenshots and collage examples lead; UI chrome should recede.
+
+3. **Trust through precision** — Photographers have trained eyes. Pixel-perfect alignment, consistent spacing, and crisp edges communicate that the software itself is precise. Sloppiness in the site implies sloppiness in the product.
+
+4. **Purposeful color** — The purple-indigo gradient is the brand accent, not the brand background. Use it for primary CTAs, key highlights, and hover states only. Backgrounds should be near-white or very dark, not mid-tone gradients.
+
+5. **Calm confidence** — Tone down animation velocity and excess. Transitions should be smooth and subtle (150–300ms), not flashy. The product doesn't need to perform — it just needs to be good.
