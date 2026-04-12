@@ -32,7 +32,9 @@
       "Bash(grep -r color- /w/Photobooth_FE/app --include=*.tsx --include=*.css)",
       "Bash(find /w/Photobooth_FE -type d -not -path */node_modules* -not -path */.next* -not -path */.git*)",
       "WebFetch(domain:iph-photobooth.vercel.app)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(python skills/ui-ux-pro-max/scripts/search.py \"professional photography documentation settings page minimal elegant\" --design-system)",
+      "Bash(python \"C:/Users/paeki/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"professional photography documentation settings page minimal elegant\" --design-system)"
     ],
     "additionalDirectories": [
       "D:\\Photobooth_BE\\src\\middleware",

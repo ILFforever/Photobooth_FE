@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import Icon from '@mdi/react';
+import { mdiCamera } from '@mdi/js';
 
 const subPages = [
   {
@@ -81,14 +83,94 @@ export default function PhotoboothPage() {
           {/* Screenshot */}
           <div className="mb-14 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
             <Image
-              src="/photos/guide/photobooth/taking-photos.png"
-              alt="Photobooth interface"
+              src="/photos/guide/photobooth/photobooth-camera.png"
+              alt="Photobooth camera controls"
               width={1388}
               height={868}
               className="w-full h-auto"
             />
             <div className="bg-gray-50 px-4 py-2.5 border-t border-gray-200">
-              <p className="text-xs text-gray-500">The photobooth interface — left sidebar shows camera controls, center displays the guest preview with session gallery below, right sidebar lists all photo sessions.</p>
+              <p className="text-xs text-gray-500">Camera controls panel — connect your camera, toggle live view, and adjust shooting settings.</p>
+            </div>
+          </div>
+
+          {/* Two Main Panels Section */}
+          <section className="mb-14">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-5">Control Center Tabs</h2>
+            <p className="text-gray-600 mb-6">
+              The left sidebar — called Control Center — has two tabs you'll switch between during setup. The <strong>Camera</strong> tab connects your camera; the <strong>Photobooth</strong> tab configures session behavior.
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {/* Camera Tab */}
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-green-100 text-green-600">
+                    <Icon path={mdiCamera} size={1} />
+                  </span>
+                  <h3 className="font-semibold text-gray-900 text-lg">Camera Tab</h3>
+                </div>
+                <p className="text-sm text-gray-700 leading-relaxed mb-4">
+                  Shows the CAMERA section where you connect your camera and enable live view. Once connected, the live feed appears in the center Guest Display area.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-4 h-4 text-green-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                    <span>Camera connection status</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-4 h-4 text-green-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                    <span>Live view toggle</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Photobooth Tab */}
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6 border border-orange-200">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-orange-100 text-orange-600">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    </svg>
+                  </span>
+                  <h3 className="font-semibold text-gray-900 text-lg">Photobooth Tab</h3>
+                </div>
+                <p className="text-sm text-gray-700 leading-relaxed mb-4">
+                  All session configuration lives here. Set your working folder, load a collage set, configure delays, naming, QR sharing, GIF generation, and print settings before starting.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-4 h-4 text-orange-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                    <span>Working Folder — where session photos are saved</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-4 h-4 text-orange-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                    <span>Select Set — load your collage template</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-4 h-4 text-orange-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                    <span>Delay Settings, Naming Scheme, QR Settings</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-4 h-4 text-orange-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                    <span>GIF Generation and Print Settings</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Settings Screenshot */}
+          <div className="mb-14 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+            <Image
+              src="/photos/guide/photobooth/photobooth-settings.png"
+              alt="Photobooth settings panel"
+              width={1388}
+              height={868}
+              className="w-full h-auto"
+            />
+            <div className="bg-gray-50 px-4 py-2.5 border-t border-gray-200">
+              <p className="text-xs text-gray-500">Photobooth settings — configure countdown timers, auto-capture intervals, and session preferences.</p>
             </div>
           </div>
 
@@ -103,29 +185,36 @@ export default function PhotoboothPage() {
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {[
                 {
-                  title: "Camera Controls",
-                  desc: "Connect your camera, toggle live view, and adjust settings like shutter speed, aperture, ISO, and white balance.",
+                  title: "Control Center",
+                  desc: "Left sidebar with Camera and Photobooth tabs. Switch between them to connect your camera or configure session settings.",
                   icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /></svg>,
                   color: "bg-green-50 border-green-200",
                   iconColor: "text-green-600",
                 },
                 {
                   title: "Guest Display",
-                  desc: "Main preview area showing live camera feed with view controls. Open on a second screen for guests to see themselves.",
+                  desc: "Center top area showing the live camera feed. Includes view controls and an \"Open on Second Screen\" button to send the feed to a secondary monitor.",
                   icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>,
                   color: "bg-blue-50 border-blue-200",
                   iconColor: "text-blue-600",
                 },
                 {
+                  title: "Session Gallery",
+                  desc: "Center area below the live view. Shows the current session's captured photos as thumbnails, with a Publish button to upload and share.",
+                  icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>,
+                  color: "bg-purple-50 border-purple-200",
+                  iconColor: "text-purple-600",
+                },
+                {
                   title: "Operator Interface",
-                  desc: "Main operator controls with shutter button, countdown timer display, including photobooth auto and pause buttons",
+                  desc: "Bottom bar with a countdown timer, frame counter, shutter button, and photobooth auto/pause controls for running the session.",
                   icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
                   color: "bg-rose-50 border-rose-200",
                   iconColor: "text-rose-600",
                 },
                 {
                   title: "Photo Sessions",
-                  desc: "List of all photobooth sessions with dates and photo counts. Load previous sessions or create new ones.",
+                  desc: "Right sidebar listing all past sessions with timestamps and photo counts. Click LOAD to restore a session, or start a new one. The active session is highlighted.",
                   icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>,
                   color: "bg-orange-50 border-orange-200",
                   iconColor: "text-orange-600",
@@ -142,81 +231,83 @@ export default function PhotoboothPage() {
             </div>
 
             {/* Quick reference diagram */}
-            <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-5">Interface Layout</h3>
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="space-y-4">
-                  {/* Top bar */}
-                  <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-lg px-5 py-4 border border-slate-200">
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-slate-700 text-sm">Top Bar</span>
-                      <span className="text-slate-500 text-xs">Capture Center Logo · Photobooth Title · Account Dropdown</span>
+            <div className="rounded-xl border border-gray-200 overflow-hidden">
+              <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Interface Layout</h3>
+              </div>
+
+              {/* Diagram */}
+              <div className="bg-white p-8">
+                {/* Top bar zone */}
+                <div className="rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 px-6 py-3 mb-3 flex items-center justify-between">
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Top Bar</span>
+                  <span className="text-xs text-slate-400">App icon · Title · Account</span>
+                </div>
+
+                {/* Main 3-column layout */}
+                <div className="flex gap-3" style={{minHeight: "340px"}}>
+
+                  {/* Left — Control Center */}
+                  <div className="w-48 shrink-0 rounded-lg border-2 border-dashed border-emerald-400 bg-emerald-50/60 p-5 flex flex-col">
+                    <div className="flex items-center gap-2 mb-auto">
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></div>
+                      <span className="text-sm font-semibold text-emerald-700">Control Center</span>
+                    </div>
+                    <p className="text-xs text-emerald-600 leading-relaxed mt-3">
+                      Camera tab — connect &amp; live view<br />
+                      Photobooth tab — all session settings
+                    </p>
+                  </div>
+
+                  {/* Center — stacked zones */}
+                  <div className="flex-1 flex flex-col gap-3">
+                    {/* Guest Display */}
+                    <div className="rounded-lg border-2 border-dashed border-sky-400 bg-sky-50/60 px-5 py-4" style={{flex: "2"}}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-sky-400 shrink-0"></div>
+                        <span className="text-sm font-semibold text-sky-700">Guest Display</span>
+                      </div>
+                      <p className="text-xs text-sky-600 leading-relaxed">
+                        Live camera feed · thumbnail strip<br />
+                        "Open on Second Screen" for guests
+                      </p>
+                    </div>
+
+                    {/* Session Gallery */}
+                    <div className="rounded-lg border-2 border-dashed border-violet-400 bg-violet-50/60 px-5 py-4" style={{flex: "2"}}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-violet-400 shrink-0"></div>
+                        <span className="text-sm font-semibold text-violet-700">Session Gallery</span>
+                      </div>
+                      <p className="text-xs text-violet-600 leading-relaxed">
+                        Collage previews for active session<br />
+                        Publish button to upload &amp; share
+                      </p>
+                    </div>
+
+                    {/* Operator Interface */}
+                    <div className="rounded-lg border-2 border-dashed border-rose-400 bg-rose-50/60 px-5 py-4" style={{flex: "1"}}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0"></div>
+                        <span className="text-sm font-semibold text-rose-700">Operator Interface</span>
+                      </div>
+                      <p className="text-xs text-rose-600 leading-relaxed">
+                        Countdown · frame counter · auto/pause · shutter
+                      </p>
                     </div>
                   </div>
 
-                  {/* Main content area */}
-                  <div className="flex gap-4 h-80">
-                    {/* Control Center */}
-                    <div className="w-36 bg-gradient-to-b from-green-50 to-green-100/50 border-2 border-green-300 rounded-lg p-5 flex flex-col">
-                      <div className="font-semibold text-green-700 text-sm mb-4">Control Center</div>
-                      <div className="space-y-3 text-xs text-green-600 flex-1">
-                        <div className="bg-white/70 rounded px-4 py-2.5 border border-green-300">Camera Status</div>
-                        <div className="bg-white/70 rounded px-4 py-2.5 border border-green-300">Live View</div>
-                        <div className="bg-white/70 rounded px-4 py-2.5 border border-green-300">Settings</div>
-                        <div className="bg-white/70 rounded px-4 py-2.5 border border-green-300">Polling</div>
-                      </div>
+                  {/* Right — Photo Sessions */}
+                  <div className="w-48 shrink-0 rounded-lg border-2 border-dashed border-amber-400 bg-amber-50/60 p-5 flex flex-col">
+                    <div className="flex items-center gap-2 mb-auto">
+                      <div className="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></div>
+                      <span className="text-sm font-semibold text-amber-700">Photo Sessions</span>
                     </div>
-
-                    {/* Center panel */}
-                    <div className="flex-1 flex flex-col gap-4">
-                      {/* Guest display */}
-                      <div className="flex-1 bg-gradient-to-b from-blue-50 to-blue-100/50 border-2 border-blue-300 rounded-lg p-4">
-                        <div className="font-semibold text-blue-700 text-sm mb-3">Guest Display</div>
-                        <div className="flex gap-2 text-xs text-blue-600">
-                          <div className="bg-white/70 rounded px-3 py-2 border border-blue-300 flex-1 text-center">Live Preview</div>
-                          <div className="bg-white/70 rounded px-3 py-2 border border-blue-300 flex-1 text-center">View Controls</div>
-                          <div className="bg-white/70 rounded px-3 py-2 border border-blue-300 flex-1 text-center">2nd Screen</div>
-                        </div>
-                      </div>
-                      {/* Session gallery */}
-                      <div className="h-20 bg-gradient-to-b from-purple-50 to-purple-100/50 border-2 border-purple-300 rounded-lg p-4">
-                        <div className="flex items-center justify-between h-full">
-                          <div>
-                            <div className="font-semibold text-purple-700 text-sm mb-1">Session Gallery</div>
-                            <div className="text-xs text-purple-600">Photo Grid · Navigation · Finalize</div>
-                          </div>
-                          <div className="flex gap-1.5">
-                            <div className="w-8 h-8 bg-purple-200 rounded border border-purple-300"></div>
-                            <div className="w-8 h-8 bg-purple-200 rounded border border-purple-300"></div>
-                            <div className="w-8 h-8 bg-purple-200 rounded border border-purple-300"></div>
-                          </div>
-                        </div>
-                      </div>
-                      {/* Operator interface */}
-                      <div className="h-20 bg-gradient-to-b from-rose-50 to-rose-100/50 border-2 border-rose-300 rounded-lg p-4">
-                        <div className="flex items-center justify-between h-full">
-                          <div>
-                            <div className="font-semibold text-rose-700 text-sm mb-1">Operator Interface</div>
-                            <div className="text-xs text-rose-600">Shutter Button · Countdown Timer · Operator Controls</div>
-                          </div>
-                          <div className="flex gap-2 items-center">
-                            <div className="w-12 h-8 bg-rose-200 rounded border border-rose-300 flex items-center justify-center text-xs font-semibold text-rose-700">03</div>
-                            <div className="w-10 h-10 bg-rose-300 rounded-full border border-rose-400"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Right sidebar */}
-                    <div className="w-36 bg-gradient-to-b from-orange-50 to-orange-100/50 border-2 border-orange-300 rounded-lg p-5 flex flex-col">
-                      <div className="font-semibold text-orange-700 text-sm mb-4">Photo Sessions</div>
-                      <div className="space-y-3 text-xs text-orange-600 flex-1">
-                        <div className="bg-white/70 rounded px-4 py-2.5 border border-orange-300">Session List</div>
-                        <div className="bg-white/70 rounded px-4 py-2.5 border border-orange-300">Active Badge</div>
-                        <div className="bg-white/70 rounded px-4 py-2.5 border border-orange-300">Load Button</div>
-                        <div className="bg-white/70 rounded px-4 py-2.5 border border-orange-300">Session Info</div>
-                      </div>
-                    </div>
+                    <p className="text-xs text-amber-600 leading-relaxed mt-3">
+                      All sessions listed with dates<br />
+                      Active session highlighted<br />
+                      LOAD to restore any session
+                    </p>
                   </div>
                 </div>
               </div>

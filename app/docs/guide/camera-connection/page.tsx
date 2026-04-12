@@ -5,7 +5,7 @@ import Link from "next/link";
 
 type CameraBrand = "fujifilm" | "canon" | "sony" | "general";
 
-const cameraSteps = {
+const cameraSteps: Record<CameraBrand, { title: string; description: string; substeps?: string[] }[]> = {
   fujifilm: [
     {
       title: "Power on your camera",

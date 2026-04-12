@@ -96,6 +96,34 @@ export default function SavingPage() {
               </div>
             </section>
 
+            {/* Exporting & Importing */}
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-3">Exporting & Importing Sets</h2>
+              <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                Sets can be exported as <code className="font-mono text-xs bg-gray-100 px-1.5 py-0.5 rounded">.ptbs</code> files and shared or imported on another machine — useful for backing up your work or moving sets between computers.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 text-sm mb-1">Exporting a set</h3>
+                  <p className="text-sm text-gray-600">Open the Custom Sets panel, find the set you want to export, and click <strong>Export</strong>. Choose a location to save the <code className="font-mono text-xs bg-gray-100 px-1 py-0.5 rounded">.ptbs</code> file — the filename defaults to your set name.</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 text-sm mb-1">Importing a set</h3>
+                  <p className="text-sm text-gray-600">Click <strong>Import Set</strong> in the Custom Sets panel and select a <code className="font-mono text-xs bg-gray-100 px-1 py-0.5 rounded">.ptbs</code> file. The set will be added to your saved sets list and is immediately ready to use.</p>
+                </div>
+              </div>
+
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p className="text-sm text-blue-800">A <code className="font-mono text-xs bg-blue-100 px-1 py-0.5 rounded">.ptbs</code> file is fully self-contained — all assets including custom images and fonts are bundled inside as base64. The imported set will look identical on any machine with no additional files needed.</p>
+                </div>
+              </div>
+            </section>
+
             {/* Bottom nav */}
             <div className="mt-10 pt-6 border-t border-gray-100 flex items-center justify-between">
               <Link href="/docs/guide/collages/overlays" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-purple-600 transition-colors">
