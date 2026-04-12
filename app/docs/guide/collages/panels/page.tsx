@@ -28,15 +28,27 @@ export default function PanelsPage() {
             <div className="flex items-center gap-3 mb-3">
               <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-purple-100 text-purple-600">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
                 </svg>
               </span>
               <span className="text-sm font-medium text-purple-600 tracking-wide uppercase">Collage Creator</span>
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Additional Tabs</h1>
-            <p className="text-lg text-gray-500 mb-12">
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Additional Tabs</h1>
+            <p className="text-lg text-gray-500 mb-8">
               Reference for the additional panels in the Collage Creator — Working Folder, Edit, and Export.
             </p>
+
+            <div className="mb-10 p-4 bg-amber-50 rounded-xl border border-amber-200">
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <span className="font-medium text-amber-900">Not required for Photobooth mode</span>
+                  <p className="text-amber-800 text-sm mt-0.5">The tabs covered here — Working Folder, Edit, and Export — are only used when working with collages as standalone exports. They are not part of the photobooth session workflow. If you are setting up for a photobooth session, you only need to <Link href="/docs/guide/collages/saving" className="underline font-medium hover:text-amber-950">save a set</Link> and start shooting.</p>
+                </div>
+              </div>
+            </div>
 
             <div className="space-y-6">
 
@@ -107,7 +119,7 @@ export default function PanelsPage() {
                   <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
                     <div className="flex items-start gap-2.5">
                       <svg className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                      <p className="text-blue-800 text-sm">The Edit tab only becomes active when you click on a frame that already has a photo in it. It gives you numeric control over the photo&apos;s appearance without using the on-canvas drag handles.</p>
+                      <p className="text-blue-800 text-sm">The Edit tab only becomes active when you click on a frame that already has a photo in it. It gives you precise numeric control over the photo&apos;s appearance — useful as an alternative to the on-canvas drag handles, which you can still use for resizing and moving.</p>
                     </div>
                   </div>
 
@@ -170,12 +182,46 @@ export default function PanelsPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <div>
-                      <span className="font-medium text-gray-900 text-sm">Full-resolution export</span>
-                      <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">The export renders the collage at full canvas resolution with all layers — background, frames, photos, and overlays — composited together.</p>
-                    </div>
+                  {/* Summary fields */}
+                  <div className="mb-5 bg-white rounded-lg border border-gray-200 divide-y divide-gray-100">
+                    {[
+                      { label: "Canvas", desc: "Base canvas size.", badge: null },
+                      { label: "Output", desc: "Exported resolution — scales up based on the MP setting.", badge: null },
+                      { label: "Images", desc: "Frames filled with photos. Green check means all frames are ready.", badge: null },
+                      { label: "Overlays", desc: "Number of overlay layers included.", badge: null },
+                      { label: "Est. Size", desc: "Approximate PNG file size.", badge: null },
+                    ].map((item) => (
+                      <div key={item.label} className="flex items-center gap-3 px-4 py-2.5 group hover:bg-gray-50 transition-colors duration-150">
+                        <span className="font-mono text-xs font-semibold text-gray-600 shrink-0 w-20">{item.label}</span>
+                        <p className="text-gray-500 text-xs flex-1">{item.desc}</p>
+                        {item.badge && (
+                          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-green-700 bg-green-50 border border-green-200 px-1.5 py-0.5 rounded-full shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
+                            {item.badge}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Options */}
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Options</h3>
+                  <div className="bg-white rounded-lg border border-gray-200 divide-y divide-gray-100">
+                    {[
+                      { title: "Resolution", desc: "8 MP, 15 MP, 24 MP, or Custom. 15 MP is the default and suits most prints — higher settings increase file size.", hint: "15 MP recommended" },
+                      { title: "Double Page", desc: "Exports two copies side-by-side. For Fuji 4×6 half-cut printing — the printer splits the sheet, producing two identical prints.", hint: "Fuji 4×6" },
+                      { title: "Border Fit", desc: "Adds white margins around the image. Prevents cropping when the print aspect ratio doesn't exactly match the canvas.", hint: null },
+                    ].map((item) => (
+                      <div key={item.title} className="px-4 py-3 group hover:bg-gray-50 transition-colors duration-150">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="font-medium text-gray-900 text-sm">{item.title}</span>
+                          {item.hint && (
+                            <span className="text-[10px] text-gray-400 group-hover:text-purple-500 transition-colors duration-200">{item.hint}</span>
+                          )}
+                        </div>
+                        <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </section>

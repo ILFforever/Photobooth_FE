@@ -152,6 +152,19 @@ export default function SigningInPage() {
                   When you sign in, Google will show what permissions the photobooth is requesting:
                 </p>
 
+                <div className="mb-6 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                  <Image
+                    src="/photos/guide/signing-in/google-permissions.png"
+                    alt="Google permissions dialog for photobooth_IPH requesting access to Google Account"
+                    width={1280}
+                    height={720}
+                    className="w-full h-auto"
+                  />
+                  <div className="bg-white px-4 py-2.5 border-t border-gray-200">
+                    <p className="text-xs text-gray-500">The Google permissions dialog — review the requested access, then click <strong>Continue</strong> to authorise or <strong>Cancel</strong> to abort sign-in.</p>
+                  </div>
+                </div>
+
                 <div className="space-y-3 mb-6">
                   {[
                     {
@@ -183,34 +196,6 @@ export default function SigningInPage() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
-
-            {/* Connecting your account */}
-            <section className="mb-14">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-5">Connecting Your Account</h2>
-              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                <p className="text-gray-700 mb-5">
-                  To sign in and enable Google Drive sharing:
-                </p>
-                <ol className="space-y-4">
-                  {[
-                    { step: "1", title: "Click Sign In", desc: "Click the 'Sign in' button that appears in the top-right corner of the application" },
-                    { step: "2", title: "Authenticate with Google", desc: "A browser window will open. Select your Google account or sign in with your credentials" },
-                    { step: "3", title: "Grant Permissions", desc: "Review and authorize the requested permissions for Google Drive access" },
-                    { step: "4", title: "Connection Complete", desc: "The app will show you're signed in. You can now upload photos and generate QR codes" },
-                  ].map((item) => (
-                    <li key={item.step} className="flex gap-4">
-                      <span className="flex items-center justify-center w-7 h-7 rounded-full bg-red-100 text-red-600 text-sm font-semibold shrink-0">
-                        {item.step}
-                      </span>
-                      <div>
-                        <h4 className="font-medium text-gray-900 mb-0.5">{item.title}</h4>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
               </div>
             </section>
 
@@ -262,11 +247,11 @@ export default function SigningInPage() {
                 {[
                   {
                     issue: "Browser doesn't open",
-                    solution: "Check your default browser settings. Manually copy the authorization URL from the error message and paste it into your browser."
+                    solution: "Press the open browser button in the sign-in modal. If that doesn't work, check your default browser settings. Chrome, Firefox and Edge are supported. If using a non-standard browser, try setting a different default browser temporarily." 
                   },
                   {
                     issue: "Connection fails",
-                    solution: "Ensure you have an active internet connection. Try signing out of your Google account in the browser first, then reconnect."
+                    solution: "Ensure you have an active internet connection."
                   },
                   {
                     issue: "Wrong permissions shown",
@@ -300,36 +285,6 @@ export default function SigningInPage() {
                     </div>
                   </details>
                 ))}
-              </div>
-            </section>
-
-            {/* Security note */}
-            <section className="mb-14">
-              <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6 border border-red-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                  Security Best Practices
-                </h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-start gap-2">
-                    <svg className="w-4 h-4 text-red-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                    <span>Only connect on secure, trusted networks (avoid public WiFi when signing in)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-4 h-4 text-red-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                    <span>Disconnect your account when not in use or after events</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-4 h-4 text-red-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                    <span>Regularly review connected apps in your Google Account settings</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-4 h-4 text-red-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                    <span>Use two-factor authentication on your Google account for added security</span>
-                  </li>
-                </ul>
               </div>
             </section>
 

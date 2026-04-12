@@ -29,6 +29,7 @@ const sections = [
     ),
     pages: [
       { title: "Overview", href: "/docs/guide/collages", description: "What is a set and how the layers work." },
+      { title: "Quick Start", href: "/docs/guide/collages/guide", description: "Workflow overview and tab reference for the Collage Creator." },
       { title: "Setting Up the Canvas", href: "/docs/guide/collages/canvas", description: "Choose the output size and aspect ratio." },
       { title: "Adding Backgrounds", href: "/docs/guide/collages/backgrounds", description: "Set the background image for your canvas." },
       { title: "Adding Frames", href: "/docs/guide/collages/frames", description: "Create and position photo cutout zones." },

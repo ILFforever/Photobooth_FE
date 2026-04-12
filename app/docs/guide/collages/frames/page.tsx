@@ -35,7 +35,7 @@ export default function FramesPage() {
               </span>
               <span className="text-sm font-medium text-purple-600 tracking-wide uppercase">Collage Creator</span>
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Adding Frames</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Adding Frames</h1>
             <p className="text-lg text-gray-500 mb-12">
               Frames define the cutout zones where guest photos will appear. You have full control over their shape, size, and position on the canvas.
             </p>
@@ -134,44 +134,61 @@ export default function FramesPage() {
                   <h2 className="font-semibold text-gray-900">Toolbar Controls</h2>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-purple-50 border border-purple-100">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-600 shrink-0 mt-0.5">
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d={mdiMagnetOn} /></svg>
-                    </span>
-                    <div>
-                      <span className="font-medium text-gray-900 text-sm">Snapping</span>
-                      <p className="text-gray-500 text-xs mt-0.5">Toggle magnet icon for snap-to-grid alignment.</p>
+                  {/* Left col: 3 toolbar buttons */}
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-start gap-3 p-3 rounded-lg bg-purple-50 border border-purple-100">
+                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-600 shrink-0 mt-0.5">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d={mdiMagnetOn} /></svg>
+                      </span>
+                      <div>
+                        <span className="font-medium text-gray-900 text-sm">Snapping</span>
+                        <p className="text-gray-500 text-xs mt-0.5">Toggle magnet icon for snap-to-grid alignment.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 rounded-lg bg-pink-50 border border-pink-100">
+                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-pink-100 text-pink-600 shrink-0 mt-0.5">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d={mdiEyeOff} /></svg>
+                      </span>
+                      <div>
+                        <span className="font-medium text-gray-900 text-sm">Show/Hide Overlays</span>
+                        <p className="text-gray-500 text-xs mt-0.5">Toggle overlays on canvas. See <Link href="/docs/guide/collages/overlays" className="text-purple-600 hover:text-purple-700 underline font-medium">Adding Overlays</Link>.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
+                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-100 text-amber-600 shrink-0 mt-0.5">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d={mdiLock} /></svg>
+                      </span>
+                      <div>
+                        <span className="font-medium text-gray-900 text-sm">Lock/Unlock Frames</span>
+                        <p className="text-gray-500 text-xs mt-0.5">Prevent accidental movement. Look for the <span className="font-medium text-gray-700">&quot;locked&quot;</span> indicator.</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-pink-50 border border-pink-100">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-pink-100 text-pink-600 shrink-0 mt-0.5">
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d={mdiEyeOff} /></svg>
-                    </span>
-                    <div>
-                      <span className="font-medium text-gray-900 text-sm">Show/Hide Overlays</span>
-                      <p className="text-gray-500 text-xs mt-0.5">Toggle overlays on canvas. See <Link href="/docs/guide/collages/overlays" className="text-purple-600 hover:text-purple-700 underline font-medium">Adding Overlays</Link>.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-100 text-amber-600 shrink-0 mt-0.5">
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d={mdiLock} /></svg>
-                    </span>
-                    <div>
-                      <span className="font-medium text-gray-900 text-sm">Lock/Unlock Frames</span>
-                      <p className="text-gray-500 text-xs mt-0.5">Prevent accidental movement. Look for the <span className="font-medium text-gray-700">&quot;locked&quot;</span> indicator.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-gray-100 border border-gray-200">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-200 text-gray-700 shrink-0 mt-0.5">
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d={mdiKeyboard} /></svg>
-                    </span>
-                    <div>
+
+                  {/* Right col: keyboard shortcuts */}
+                  <div className="p-3 rounded-lg bg-gray-100 border border-gray-200 flex flex-col">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-200 text-gray-700 shrink-0">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d={mdiKeyboard} /></svg>
+                      </span>
                       <span className="font-medium text-gray-900 text-sm">Keyboard Shortcuts</span>
-                      <p className="text-gray-500 text-xs mt-0.5">
-                        <kbd className="font-mono bg-white px-1.5 py-0.5 rounded border border-gray-300">Ctrl+C</kbd> Copy ·{" "}
-                        <kbd className="font-mono bg-white px-1.5 py-0.5 rounded border border-gray-300">Ctrl+V</kbd> Paste ·{" "}
-                        <kbd className="font-mono bg-white px-1.5 py-0.5 rounded border border-gray-300">Del</kbd> Delete
-                      </p>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      {[
+                        { keys: ["Del"], desc: "Delete selected frame" },
+                        { keys: ["S"], desc: "Toggle snapping" },
+                        { keys: ["H"], desc: "Toggle overlays" },
+                        { keys: ["←", "↑", "↓", "→"], desc: "Nudge 1px  /  Shift + arrows  10px" },
+                      ].map((s) => (
+                        <div key={s.desc} className="flex items-center gap-2 bg-white rounded-md px-3 py-2 border border-gray-200">
+                          <span className="flex items-center gap-1 shrink-0">
+                            {s.keys.map((k) => (
+                              <kbd key={k} className="font-mono text-xs bg-gray-50 px-1.5 py-0.5 rounded border border-gray-300">{k}</kbd>
+                            ))}
+                          </span>
+                          <span className="text-gray-500 text-xs">{s.desc}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -186,18 +203,9 @@ export default function FramesPage() {
                   <h2 className="font-semibold text-gray-900">Saving Frames</h2>
                 </div>
 
-                <div className="mb-4 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-                  <Image
-                    src="/photos/guide/collages/save-buttons.png"
-                    alt="Save buttons toolbar showing New, Load, and Save options"
-                    width={2880}
-                    height={1800}
-                    className="w-full h-auto"
-                  />
-                  <div className="bg-gray-50 px-4 py-2.5 border-t border-gray-200">
-                    <p className="text-xs text-gray-500">The saving toolbar — use <strong>New</strong> to start fresh, <strong>Load</strong> to retrieve saved frames, or <strong>Save</strong> to store your current frame configuration.</p>
-                  </div>
-                </div>
+                <p className="text-gray-600 text-sm mb-4">
+                  The Frame Creator toolbar has three buttons for managing your frames — use them to start fresh, load a previously saved frame, or save your current work.
+                </p>
 
                 <div className="grid sm:grid-cols-3 gap-3 mb-4">
                   {[

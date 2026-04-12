@@ -3,6 +3,12 @@ import Link from "next/link";
 
 const subPages = [
   {
+    title: "Quick Start",
+    href: "/docs/guide/collages/guide",
+    description: "A quick overview of the Collage Creator workflow and all available tabs.",
+    icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+  },
+  {
     title: "Setting Up the Canvas",
     href: "/docs/guide/collages/canvas",
     description: "Choose the output size and aspect ratio of your collage.",
@@ -67,7 +73,7 @@ export default function CollagesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
                   </svg>
                 </span>
-                <span className="text-sm font-medium text-purple-600 tracking-wide uppercase">Design</span>
+                <span className="text-sm font-medium text-purple-600 tracking-wide uppercase">Collage Creator</span>
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Collage Creator</h1>
               <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
@@ -171,10 +177,10 @@ export default function CollagesPage() {
             {/* Bottom nav */}
             <div className="mt-10 pt-6 border-t border-gray-100 flex justify-end">
               <Link
-                href="/docs/guide/collages/canvas"
+                href="/docs/guide/collages/guide"
                 className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
               >
-                Next: Setting Up the Canvas
+                Next: Quick Start
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               </Link>
             </div>

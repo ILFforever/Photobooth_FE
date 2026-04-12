@@ -14,7 +14,7 @@ export default function Footer() {
               <span className="text-xl font-bold text-white">IPH Photobooth</span>
             </div>
             <p className="text-gray-400 max-w-md">
-              Professional photobooth software by Intania Production House.
+              Professional photobooth software by ILFforever for Intania Production House.
               Capture memories at events with beautiful photos, collages, and instant sharing.
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
-          <p>&copy; {currentYear} Intania Production House. All rights reserved.</p>
+          <p>&copy; {currentYear} ILFforever. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -175,14 +175,16 @@ export default function GettingStartedPage() {
                   </p>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {[
-                      { name: "Fujifilm X-Series", status: "Full Support" },
-                      { name: "Canon EOS Series", status: "Full Support" },
+                      { name: "Fujifilm X-Series", status: "Full Support", full: true },
+                      { name: "Canon EOS Series", status: "Full Support", full: true },
+                      { name: "Canon R Series", status: "Full Support", full: true },
+                      { name: "Sony E-Mount Series", status: "Limited Support", full: false },
                     ].map((cam) => (
                       <div key={cam.name} className="flex items-center gap-3 bg-white rounded-lg px-4 py-3 border border-gray-100">
-                        <span className="w-2.5 h-2.5 bg-green-500 rounded-full shrink-0" />
+                        <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${cam.full ? "bg-green-500" : "bg-yellow-400"}`} />
                         <div>
                           <span className="font-medium text-gray-900 text-sm">{cam.name}</span>
-                          <span className="text-green-600 text-xs ml-2">{cam.status}</span>
+                          <span className={`text-xs ml-2 ${cam.full ? "text-green-600" : "text-yellow-600"}`}>{cam.status}</span>
                         </div>
                       </div>
                     ))}

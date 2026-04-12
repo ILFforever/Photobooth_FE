@@ -48,7 +48,7 @@ export default function Hero() {
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight mb-6">
             Professional{" "}
             <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Photo Booth
+              Photobooth
             </span>{" "}
             Software
           </h1>

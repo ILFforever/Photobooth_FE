@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type CameraBrand = "fujifilm" | "canon" | "general";
+type CameraBrand = "fujifilm" | "canon" | "sony" | "general";
 
 const cameraSteps = {
   fujifilm: [
@@ -51,6 +51,24 @@ const cameraSteps = {
     {
       title: "Wait for detection",
       description: "The app will automatically detect and connect to your Canon camera.",
+    },
+  ],
+  sony: [
+    {
+      title: "Power on your camera",
+      description: "Make sure your Sony camera has a charged battery or is connected to AC power.",
+    },
+    {
+      title: "Connect via USB cable",
+      description: "Use the USB cable that came with your camera. Connect it to your computer's USB port.",
+    },
+    {
+      title: "Select Remote Shooting",
+      description: "A popup will appear on your camera screen. Click 'Remote Shooting' to establish the connection.",
+    },
+    {
+      title: "Wait for detection",
+      description: "The app will automatically detect and connect to your Sony camera.",
     },
   ],
   general: [
@@ -132,6 +150,11 @@ export default function CameraConnectionPage() {
                     <span className="text-gray-700">Canon EOS Series</span>
                     <span className="text-xs text-green-600 bg-green-50 px-2 py-0.5 rounded-full">Full Support</span>
                   </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span className="text-gray-700">Sony Alpha Series</span>
+                    <span className="text-xs text-green-600 bg-green-50 px-2 py-0.5 rounded-full">Full Support</span>
+                  </div>
                 </div>
                 <p className="text-gray-500 text-sm">
                   Other camera brands may function but some camera settings from the app may not work.
@@ -148,6 +171,7 @@ export default function CameraConnectionPage() {
                 {[
                   { key: "fujifilm" as const, label: "Fujifilm" },
                   { key: "canon" as const, label: "Canon" },
+                  { key: "sony" as const, label: "Sony" },
                   { key: "general" as const, label: "Other" },
                 ].map((btn) => (
                   <button
@@ -188,6 +212,21 @@ export default function CameraConnectionPage() {
                   ))}
                 </div>
               </div>
+
+              {/* Canon-specific note */}
+              {brand === "canon" && (
+                <div className="mt-4 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                      <span className="font-semibold text-amber-900">Canon Cameras: Screen Blinking?</span>
+                      <p className="text-amber-800 text-sm mt-1">If the screen blinks after connecting, turn on <strong>PTP Live Stream</strong>. The blinking will stop and the buttons will become operable.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </section>
 
             {/* Cable Recommendation */}

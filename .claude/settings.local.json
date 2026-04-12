@@ -30,7 +30,9 @@
       "Bash(npm install --save-dev cross-env)",
       "Bash(npm install:*)",
       "Bash(grep -r color- /w/Photobooth_FE/app --include=*.tsx --include=*.css)",
-      "Bash(find /w/Photobooth_FE -type d -not -path */node_modules* -not -path */.next* -not -path */.git*)"
+      "Bash(find /w/Photobooth_FE -type d -not -path */node_modules* -not -path */.next* -not -path */.git*)",
+      "WebFetch(domain:iph-photobooth.vercel.app)",
+      "Bash(npm run:*)"
     ],
     "additionalDirectories": [
       "D:\\Photobooth_BE\\src\\middleware",
