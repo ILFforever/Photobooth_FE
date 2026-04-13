@@ -11,7 +11,6 @@ const images = [
 
 function getPosition(index: number, current: number, total: number) {
   const diff = (index - current + total) % total;
-  // diff: 0 = center, 1 = right, total-1 = left
   if (diff === 0) return "center";
   if (diff === 1) return "right";
   if (diff === total - 1) return "left";
@@ -20,25 +19,25 @@ function getPosition(index: number, current: number, total: number) {
 
 const positionStyles: Record<string, React.CSSProperties> = {
   center: {
-    transform: "translateX(0%) scale(1)",
+    transform: "perspective(1000px) translateX(0%) scale(1) rotateY(0deg)",
     zIndex: 20,
     opacity: 1,
     filter: "brightness(1)",
   },
   left: {
-    transform: "translateX(-68%) scale(0.7)",
+    transform: "perspective(1000px) translateX(-68%) scale(0.7) rotateY(18deg)",
     zIndex: 10,
     opacity: 0.7,
     filter: "brightness(0.5)",
   },
   right: {
-    transform: "translateX(68%) scale(0.7)",
+    transform: "perspective(1000px) translateX(68%) scale(0.7) rotateY(-18deg)",
     zIndex: 10,
     opacity: 0.7,
     filter: "brightness(0.5)",
   },
   hidden: {
-    transform: "translateX(0%) scale(0.5)",
+    transform: "perspective(1000px) translateX(0%) scale(0.5) rotateY(0deg)",
     zIndex: 0,
     opacity: 0,
     filter: "brightness(0.3)",

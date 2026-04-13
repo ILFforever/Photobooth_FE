@@ -1,124 +1,175 @@
 "use client";
 
-import Link from "next/link";
 import ImageCarousel from "@/components/ImageCarousel";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+
+// Split headline into words for staggered reveal
+const HEADLINE_WORDS = ["IPH", "Photobooth"];
 
 export default function Hero() {
   const [version, setVersion] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const windowRef = useRef<HTMLDivElement>(null);
+
+  const rotatingWords = ["Tethering", "Collage", "Photo Sharing", "Photobooth"];
+  const [wordIndex, setWordIndex] = useState(0);
+  const [flash, setFlash] = useState(false);
+  const done = wordIndex === rotatingWords.length - 1;
+
+  // Ambient glow that follows cursor over the screenshot window
+  const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setGlowPos({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    });
+  };
+
+  // Scroll-driven tilt
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+  const rotateX = useTransform(scrollYProgress, [0, 0.5], [8, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1]);
+  const translateY = useTransform(scrollYProgress, [0, 0.5], [0, 40]);
+
+  // Rotating word with shutter flash
+  useEffect(() => {
+    if (done) return;
+    const pause = setTimeout(() => {
+      setFlash(true);
+      setTimeout(() => {
+        setWordIndex((i) => i + 1);
+        setFlash(false);
+      }, 120);
+    }, 1800);
+    return () => clearTimeout(pause);
+  }, [wordIndex, done]);
 
   useEffect(() => {
     fetch("/api/version")
       .then((res) => res.json())
-      .then((data) => {
-        if (data.version) {
-          setVersion(data.version);
-        }
-      })
-      .catch(() => {
-        // Silently fail, keep version as null
-      });
+      .then((data) => { if (data.version) setVersion(data.version); })
+      .catch(() => {});
   }, []);
 
   return (
-    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-indigo-50" />
-        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3">
-          <div className="w-[800px] h-[800px] bg-gradient-to-br from-purple-200/40 to-indigo-200/40 rounded-full blur-3xl" />
-        </div>
-        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3">
-          <div className="w-[600px] h-[600px] bg-gradient-to-tr from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl" />
-        </div>
-      </div>
+    <section ref={containerRef} className="pt-28 pb-0 bg-white overflow-hidden">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500" />
-            </span>
-            Now available for Windows
-          </div>
+        {/* Meta line */}
+        <motion.p
+          className="text-center text-sm text-gray-400 mb-8 tracking-wide"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          {version ? `v${version} · ` : ""}Windows 10 / 11 · Open Source
+        </motion.p>
 
-          {/* Heading */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight mb-6">
+        {/* Headline — word-by-word stagger */}
+        <div className="text-center mb-6 overflow-hidden">
+          <h1 className="font-[family-name:var(--font-jost)] text-[clamp(3rem,10vw,9rem)] font-extrabold text-gray-900 tracking-tight leading-none">
+            {HEADLINE_WORDS.map((word, i) => (
+              <motion.span
+                key={word}
+                className="inline-block mr-[0.2em] last:mr-0"
+                initial={{ opacity: 0, y: 60, rotateX: -15 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.12,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                style={{ transformOrigin: "center bottom", display: "inline-block" }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
+        </div>
+
+        {/* Tagline with shutter-flash on word swap */}
+        <div className="text-center mb-16 overflow-hidden">
+          <motion.p
+            className="text-[clamp(1.25rem,3.5vw,2.5rem)] font-light tracking-wide text-gray-400"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
             Professional{" "}
-            <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Photobooth
+            <span className="relative inline-block">
+              {/* Shutter flash overlay */}
+              <AnimatePresence>
+                {flash && (
+                  <motion.span
+                    className="absolute inset-0 bg-white rounded-sm pointer-events-none"
+                    initial={{ opacity: 0.9 }}
+                    animate={{ opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.12 }}
+                  />
+                )}
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={rotatingWords[wordIndex]}
+                  className="text-purple-600 inline-block"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {rotatingWords[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
             </span>{" "}
             Software
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Capture memorable moments at events with live preview, photo collages, QR code sharing,
-            and dedicated guest display. Built by{" "}
-            <span className="font-semibold text-gray-900">ILFforever</span> and licensed to{" "}
-            <span className="font-semibold text-gray-900">Intania Production House</span>.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Link
-              href="/releases"
-              className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-indigo-700 transition-all shadow-xl shadow-purple-500/25 flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-              </svg>
-              View Releases
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-            <Link
-              href="/docs"
-              className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-full border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-              </svg>
-              Documentation
-            </Link>
-          </div>
-
-          {/* Version info */}
-          <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-              </svg>
-              <span>{version ? `Version ${version}` : "Loading version..."}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Windows 10/11</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-              </svg>
-              <span>Open Source</span>
-            </div>
-          </div>
+          </motion.p>
         </div>
 
-        {/* App Preview / Hero Image */}
-        <div className="mt-16 relative">
-          <div className="relative mx-auto max-w-5xl">
-            <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur-2xl opacity-20" />
-            <div className="relative rounded-xl shadow-2xl overflow-hidden border border-gray-700">
-              <div className="flex items-center gap-2 px-4 py-3 bg-gray-900 border-b border-gray-700">
+        {/* Screenshot — 3D tilt + cursor-tracked ambient glow */}
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          style={{ perspective: "1200px" }}
+        >
+          <motion.div
+            style={{ rotateX, scale, translateY, transformOrigin: "center top" }}
+            className="relative mx-auto max-w-6xl"
+            ref={windowRef}
+            onMouseMove={handleMouseMove}
+          >
+            {/* Cursor-tracked ambient glow */}
+            <div
+              className="absolute -inset-4 rounded-2xl -z-10 transition-opacity duration-300 pointer-events-none"
+              style={{
+                background: `radial-gradient(400px circle at ${glowPos.x}% ${glowPos.y}%, rgba(147,51,234,0.12), transparent 70%)`,
+              }}
+            />
+
+            {/* Static top glow */}
+            <div className="absolute -inset-x-4 -top-4 h-16 bg-purple-200/40 blur-2xl rounded-full -z-10" />
+
+            <div className="rounded-xl overflow-hidden border border-gray-200/80 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.25)]">
+              {/* Window chrome */}
+              <div className="flex items-center gap-2 px-4 py-3 bg-gray-950 border-b border-gray-800">
                 <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  {/* Traffic lights with hover delight */}
+                  {[
+                    { color: "bg-red-500/80", hover: "hover:bg-red-500" },
+                    { color: "bg-yellow-500/80", hover: "hover:bg-yellow-400" },
+                    { color: "bg-green-500/80", hover: "hover:bg-green-400" },
+                  ].map((dot, i) => (
+                    <div
+                      key={i}
+                      className={`w-3 h-3 rounded-full ${dot.color} ${dot.hover} transition-colors duration-150 cursor-default`}
+                    />
+                  ))}
                 </div>
                 <div className="flex-1 text-center">
                   <span className="text-xs text-gray-500">IPH Photobooth</span>
@@ -126,8 +177,10 @@ export default function Hero() {
               </div>
               <ImageCarousel />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
+
+
       </div>
     </section>
   );

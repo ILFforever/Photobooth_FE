@@ -38,7 +38,7 @@ export default function Download() {
             Download IPH Photobooth
           </h2>
           <p className="text-lg text-gray-600">
-            Get started with the latest version. Free and open source for everyone.
+            Get started with the latest version. Open source and built for professionals.
           </p>
         </div>
 
