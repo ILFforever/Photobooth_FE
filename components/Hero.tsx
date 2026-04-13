@@ -57,7 +57,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={containerRef} className="pt-28 pb-0 bg-white overflow-hidden">
+    <section ref={containerRef} className="pt-28 pb-16 bg-white overflow-x-hidden">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
 
         {/* Meta line */}

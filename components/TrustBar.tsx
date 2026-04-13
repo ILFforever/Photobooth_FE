@@ -16,7 +16,7 @@ export default function TrustBar() {
 
   return (
     <div ref={ref} className="border-y border-gray-100 bg-white py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
         {/* Description paragraph — fades in on scroll */}
         <motion.div
