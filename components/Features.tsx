@@ -36,10 +36,13 @@ const features = [
     ),
   },
   {
-    name: "Virtual Machine Support",
-    description: "Built with VirtualBox integration for isolated, reliable operation. Includes VM management and automatic startup/shutdown procedures.",
+    name: "Automatic Photo Organization",
+    description: "Smart session management automatically sorts your event photos into organized collections. Keep multiple events separated and easily accessible.",
     icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+      <>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125 0 012.25 10.875v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 6.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+      </>
     ),
   },
   {

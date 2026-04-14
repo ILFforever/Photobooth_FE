@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Icon from "@mdi/react";
-import { mdiTimerSandComplete } from "@mdi/js";
+import { mdiTimerSandComplete, mdiLinux } from "@mdi/js";
 
 interface VersionInfo {
   version: string | null;
@@ -172,9 +172,7 @@ export default function ReleasesPage() {
           <div className="mb-8 bg-white rounded-2xl shadow-sm border border-indigo-200 p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-16.5 0h13.5" />
-                </svg>
+                <Icon path={mdiLinux} size={1.2} className="text-indigo-600" />
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">Current VM Version</h2>
