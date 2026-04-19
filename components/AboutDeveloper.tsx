@@ -41,7 +41,7 @@ export default function AboutDeveloper() {
               </p>
 
               <p>
-                I'm currently in my second year at Chulalongkorn University (CEDT), and outside of lectures I'm part of Intania Production House as a producer and staff member, and a core team member of the CU Photography Club — so I spend a lot of time at events, on both sides of the camera.
+                I'm currently in my second year at Chulalongkorn University faculty of Computer Engineering (CEDT), and outside of lectures I'm part of Intania Production House as a producer and staff member, and a core team member of the CU Photography Club — so I spend a lot of time at events, on both sides of the camera.
               </p>
 
               <p className="text-gray-900 font-medium">
