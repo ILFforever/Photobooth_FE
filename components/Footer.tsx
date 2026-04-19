@@ -51,7 +51,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                <a href="https://github.com/ILFforever/Photobooth_IPH" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                   GitHub
                 </a>
               </li>

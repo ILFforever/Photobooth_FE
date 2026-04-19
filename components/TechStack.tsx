@@ -204,7 +204,7 @@ export default function TechStack() {
 
         <div className="mt-12 text-center">
           <a
-            href="https://github.com"
+            href="https://github.com/ILFforever/Photobooth_IPH"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors border border-white/20"

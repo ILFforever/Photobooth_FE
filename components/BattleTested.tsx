@@ -19,6 +19,12 @@ const events: EventEntry[] = [
     description: "Open-source technology conference drawing thousands of attendees from across Asia.",
   },
   {
+    src: "/events/Intania OPH.JPG",
+    collage: "/events/Intania OPH collage.png",
+    name: "Chula Open House OPH",
+    description: "Chulalongkorn University open house event featuring IPH Photobooth — welcoming prospective students with interactive photo experiences.",
+  },
+  {
     src: "/events/mba.jpg",
     collage: "/events/mba collage.png",
     name: "MBA Blue Memories — CU MBA Exec #39",
