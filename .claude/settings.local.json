@@ -35,7 +35,9 @@
       "Bash(npm run:*)",
       "Bash(python skills/ui-ux-pro-max/scripts/search.py \"professional photography documentation settings page minimal elegant\" --design-system)",
       "Bash(python \"C:/Users/paeki/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"professional photography documentation settings page minimal elegant\" --design-system)",
-      "Bash(ls w:/Photobooth_FE/*.jpg w:/Photobooth_FE/*.jpeg w:/Photobooth_FE/*.JPG)"
+      "Bash(ls w:/Photobooth_FE/*.jpg w:/Photobooth_FE/*.jpeg w:/Photobooth_FE/*.JPG)",
+      "Bash(fly version *)",
+      "Bash(fly launch *)"
     ],
     "additionalDirectories": [
       "D:\\Photobooth_BE\\src\\middleware",
