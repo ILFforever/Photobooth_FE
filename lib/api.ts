@@ -32,7 +32,7 @@ export async function uploadRelease(
   formData.append("version", version);
   formData.append("release_notes", JSON.stringify(releaseNotes));
 
-  return fetch(`${getBackendUrl()}/api/releases`, {
+  return fetch(`/api/releases`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
     body: formData,
