@@ -1,0 +1,7 @@
+Type,Name,Value
+CNAME,d5hbcrhctbrtzoim6foogxrw34to755v._domainkey.cuiph.com,d5hbcrhctbrtzoim6foogxrw34to755v.dkim.amazonses.com
+CNAME,macphxraxulf5fq3jeyy6dguuei67pnz._domainkey.cuiph.com,macphxraxulf5fq3jeyy6dguuei67pnz.dkim.amazonses.com
+CNAME,342ukvksaokvkbxfvqjiagugltigkyhs._domainkey.cuiph.com,342ukvksaokvkbxfvqjiagugltigkyhs.dkim.amazonses.com
+MX,photobooth.cuiph.com,10 feedback-smtp.ap-southeast-2.amazonses.com
+TXT,photobooth.cuiph.com,"v=spf1 include:amazonses.com ~all"
+TXT,_dmarc.cuiph.com,"v=DMARC1; p=none;"
